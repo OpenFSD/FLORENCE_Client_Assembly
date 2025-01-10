@@ -38,15 +38,15 @@ namespace FLORENCE.Frame.Cli.Algo
                         {
                             while(Framework.GetClient().GetData().GetData_Control().GetFlag_IsInputStackLoaded())
                             {
-                                Framework.GetClient().GetData().GetData_Control().PopFromStackOfInputActions(
-                                    Framework.GetClient().GetData().GetBuffer_Front_TransmitInput(),
+                                Framework.GetClient().GetData().GetData_Control().Pop_Stack_InputActions(
+                                    Framework.GetClient().GetData().GetBuffer_BackInputDouble(),
                                     Framework.GetClient().GetData().GetStackOfInputActions()
                                 );
                                 
-                                Framework.GetClient().GetData().Flip_Buffer_TransmitInput_ToWrite();
+
                                 
                                 Networking.CreateAndSendNewMessage(
-                                    (UInt16)Framework.GetClient().GetData().GetBuffer_Back_TransmitInput().GetPraiseEventId()
+                                    (UInt16)Framework.GetClient().GetData().GetTransmitInputBuffer().GetPraiseEventId()
                                 );
                             }
                             

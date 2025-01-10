@@ -1,17 +1,16 @@
-﻿using FLORENCE.Frame.Cli.Dat.In;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLORENCE.Frame.Cli.Dat
+namespace FLORENCE
 {
     public class Output
     {
         static private FLORENCE.Frame.Cli.Dat.Out.Output_Control output_Control;
-        private FLORENCE.Frame.Cli.Dat.In.Player player;
+        private FLORENCE.Player player;
 
         static private int praiseEventId;
         static private Object praiseOutputBuffer_Subset;
@@ -71,7 +70,7 @@ namespace FLORENCE.Frame.Cli.Dat
 
         public Output()
         {
-            player = new FLORENCE.Frame.Cli.Dat.In.Player();
+            player = new FLORENCE.Player();
 
             praiseEventId = new int();
             praiseEventId = 0;
@@ -83,11 +82,11 @@ namespace FLORENCE.Frame.Cli.Dat
         public void Initalise_Graphics()
         {
             using (var graphics = new FLORENCE.Frame.Cli.Dat.Out.Graphics(
-                Framework.GetClient().GetData().GetSettings().GetGameWindowSettings(),
-                Framework.GetClient().GetData().GetSettings().GetNativeWindowSettings()
+                Framework.GetClient().GetData().GetGame_Instance().GetSettings().GetGameWindowSettings(),
+                Framework.GetClient().GetData().GetGame_Instance().GetSettings().GetNativeWindowSettings()
             ))
             {
-                FLORENCE.Frame.Cli.Dat.Settings.Set_systemInitialised(true);
+                Settings.Set_systemInitialised(true);
                 graphics.Run();
             }
         }
@@ -110,7 +109,7 @@ namespace FLORENCE.Frame.Cli.Dat
         {
             return vertices;
         }
-        public FLORENCE.Frame.Cli.Dat.In.Player GetPlayer()
+        public FLORENCE.Player GetPlayer()
         {
             return player;
         }

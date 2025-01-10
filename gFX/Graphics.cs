@@ -67,8 +67,8 @@ namespace FLORENCE.Frame.Cli.Dat.Out
             );
             GL.BufferData(
                 BufferTarget.ArrayBuffer,
-                Framework.GetClient().GetData().GetThirdOutputBuffer().Get_Vertices().Length * sizeof(float),
-                Framework.GetClient().GetData().GetThirdOutputBuffer().Get_Vertices(),
+                Framework.GetClient().GetData().GetBuffer_FrontOutputDouble().Get_Vertices().Length * sizeof(float),
+                Framework.GetClient().GetData().GetBuffer_FrontOutputDouble().Get_Vertices(),
                 BufferUsageHint.StaticDraw
             );
 
@@ -80,8 +80,8 @@ namespace FLORENCE.Frame.Cli.Dat.Out
             );
             GL.BufferData(
                 BufferTarget.ElementArrayBuffer,
-                Framework.GetClient().GetData().GetThirdOutputBuffer().Get_Indices().Length * sizeof(uint),
-                Framework.GetClient().GetData().GetThirdOutputBuffer().Get_Indices(),
+                Framework.GetClient().GetData().GetBuffer_FrontOutputDouble().Get_Indices().Length * sizeof(uint),
+                Framework.GetClient().GetData().GetBuffer_FrontOutputDouble().Get_Indices(),
                 BufferUsageHint.StaticDraw
             );
             // draw square /\ /\ /\
@@ -157,8 +157,8 @@ namespace FLORENCE.Frame.Cli.Dat.Out
 
             var model = Matrix4.Identity * Matrix4.CreateRotationX((float)MathHelper.DegreesToRadians(time));
             shader.SetMatrix4("model", model);
-            shader.SetMatrix4("view", Framework.GetClient().GetData().GetThirdOutputBuffer().GetPlayer().GetCamera().GetViewMatrix());
-            shader.SetMatrix4("projection", Framework.GetClient().GetData().GetThirdOutputBuffer().GetPlayer().GetCamera().GetProjectionMatrix());
+            shader.SetMatrix4("view", FLORENCE.Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).GetCamera().GetViewMatrix());
+            shader.SetMatrix4("projection", FLORENCE.Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).GetCamera().GetProjectionMatrix());
 
             /*
             // change colour with time \/ \/ \/
@@ -167,7 +167,7 @@ namespace FLORENCE.Frame.Cli.Dat.Out
                                         GL.Uniform4(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
             // change colour with time /\ /\ /\
             */
-            Framework.GetClient().GetData().GetMapDefault().Draw_Triangle();
+            FLORENCE.Framework.GetClient().GetData().GetGame_Instance().GetMapDefault().Draw_Triangle();
             //Framework..Get_Client().Get_Data().Get_Map_Default().Draw_Square(Framework..Get_Client().Get_Data());
 
             SwapBuffers();
@@ -207,22 +207,22 @@ namespace FLORENCE.Frame.Cli.Dat.Out
 
             if (KeyboardState.IsKeyDown(Keys.W))
             {
-                Framework.GetClient().GetData().GetBuffer_FrontInputDouble().GetPlayer().Move_Fowards(e);
+                Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Move_Fowards(e);
             }
 
             if (KeyboardState.IsKeyDown(Keys.S))
             {
-                Framework.GetClient().GetData().GetBuffer_FrontInputDouble().GetPlayer().Move_Backwards(e);
+                Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Move_Backwards(e);
                 //
             }
             if (KeyboardState.IsKeyDown(Keys.A))
             {
-                Framework.GetClient().GetData().GetBuffer_FrontInputDouble().GetPlayer().Move_Left(e);
+                Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Move_Left(e);
                 //
             }
             if (KeyboardState.IsKeyDown(Keys.D))
             {
-                Framework.GetClient().GetData().GetBuffer_FrontInputDouble().GetPlayer().Move_Right(e);
+                Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Move_Right(e);
                 //
             }
             if (KeyboardState.IsKeyDown(Keys.Space))
@@ -235,11 +235,11 @@ namespace FLORENCE.Frame.Cli.Dat.Out
             }
             Framework.GetClient().GetData().GetBuffer_FrontInputDouble().GetInputControl().CheckBufferAnomalyInFlagArray();
             Framework.GetClient().GetData().Flip_InBufferToWrite();
-            if (Framework.GetClient().GetData().GetBuffer_FrontInputDouble().GetPlayer().Get_isFirstMove()) // This bool variable is initially set to true.
+            if (Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Get_isFirstMove()) // This bool variable is initially set to true.
             {
                 //TODO move to gameinstance
-                Framework.GetClient().GetData().GetBuffer_FrontInputDouble().GetPlayer().Set_isFirstMove(false);
-                Framework.GetClient().GetData().GetBuffer_BackInputDouble().GetPlayer().Set_isFirstMove(false);
+                Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Set_isFirstMove(false);
+                Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Set_isFirstMove(false);
             }
             else
             {
@@ -265,7 +265,7 @@ namespace FLORENCE.Frame.Cli.Dat.Out
         protected override void OnMouseWheel(MouseWheelEventArgs e)
         {
             base.OnMouseWheel(e);
-            Framework.GetClient().GetData().GetBuffer_BackInputDouble().GetPlayer().GetCamera().Fov -= e.OffsetY;
+            Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).GetCamera().Fov -= e.OffsetY;
         }
         /*
 public static float Get_New_greenValue()

@@ -9,12 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLORENCE.Frame.Cli.Dat
+namespace FLORENCE
 {
     public class Input
     {
         static private FLORENCE.Frame.Cli.Dat.In.Input_Control input_Control;
-        //private FLORENCE.Frame.Cli.Dat.In.Player player;
         static private Object praiseInputBuffer_Subset;
 
         static private UInt16 praiseEventId;
@@ -28,9 +27,6 @@ namespace FLORENCE.Frame.Cli.Dat
             praiseEventId = 0;
 
             praiseInputBuffer_Subset = null;
-
-            player = new FLORENCE.Frame.Cli.Dat.In.Player();
-            while (player == null) { /* Wait while is created */ }
 
             System.Console.WriteLine("FLORENCE: Input");
         }
@@ -49,11 +45,6 @@ namespace FLORENCE.Frame.Cli.Dat
         public FLORENCE.Frame.Cli.Dat.In.Input_Control GetInputControl()
         {
             return input_Control;
-        }
-
-        public FLORENCE.Frame.Cli.Dat.In.Player GetPlayer() 
-        { 
-            return player; 
         }
 
         public int GetPraiseEventId() 

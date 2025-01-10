@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLORENCE.Frame.Cli.Dat.Out.Gfx
+namespace FLORENCE.Gfx
 {
     public class Camera
     {

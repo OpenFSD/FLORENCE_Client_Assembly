@@ -8,11 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLORENCE.Frame.Cli.Dat.In
+namespace FLORENCE
 {
     public class Player
     {
-        private FLORENCE.Frame.Cli.Dat.Out.Gfx.Camera camera;
+        private FLORENCE.Gfx.Camera camera;
 
         private bool _firstMove = false;
 
@@ -30,41 +30,45 @@ namespace FLORENCE.Frame.Cli.Dat.In
         public Player() 
         {
             _firstMove = true;
-            camera = new Camera(Vector3.UnitZ * 3, 16 / (float)9);
+            camera = new FLORENCE.Gfx.Camera(Vector3.UnitZ * 3, 16 / (float)9);
         }
         public void Move_Backwards(FrameEventArgs e)
         {
+            //TODO Create praise, push_stack_InputActions
             Vector3 temp = camera.Position - (camera.Front * cameraSpeed * (float)e.Time); // Backwards
-            Framework.GetClient().GetData().GetBuffer_FrontInputDouble().GetPlayer().Set_PlayerPosition(
+            Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Set_PlayerPosition(
                 temp
-            );
+            );          
         }
 
         public void Move_Fowards(FrameEventArgs e)
         {
+            //TODO Create praise, push_stack_InputActions
             Vector3 temp = camera.Position + (camera.Front * cameraSpeed * (float)e.Time);// Forward
-            Framework.GetClient().GetData().GetBuffer_FrontInputDouble().GetPlayer().Set_PlayerPosition(
+            Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Set_PlayerPosition(
                 temp
             );
         }
 
         public void Move_Left(FrameEventArgs e)
         {
+            //TODO Create praise, push_stack_InputActions
             Vector3 temp = camera.Position - (camera.Right * cameraSpeed * (float)e.Time);// Left
-            Framework.GetClient().GetData().GetBuffer_FrontInputDouble().GetPlayer().Set_PlayerPosition(
+            Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Set_PlayerPosition(
                 temp
             );
         }
 
         public void Move_Right(FrameEventArgs e)
         {
+            //TODO Create praise, push_stack_InputActions
             Vector3 temp = camera.Position + (camera.Right * cameraSpeed * (float)e.Time);// Right
-            Framework.GetClient().GetData().GetBuffer_FrontInputDouble().GetPlayer().Set_PlayerPosition(
+            Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Set_PlayerPosition(
                 temp
             );
         }
 
-        public FLORENCE.Frame.Cli.Dat.Out.Gfx.Camera GetCamera()
+        public FLORENCE.Gfx.Camera GetCamera()
         {
             return camera;
         }
@@ -102,11 +106,12 @@ namespace FLORENCE.Frame.Cli.Dat.In
 
         public void Set_MousePos(Vector2 pos)
         {
-            Framework.GetClient().GetData().GetBuffer_FrontInputDouble().GetPlayer().Set_MousePos(pos);
+            //TODO Create praise, push_stack_InputActions
+            Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Set_MousePos(pos);
             
             // Calculate the offset of the mouse position
-            var deltaX = Framework.GetClient().GetData().GetBuffer_FrontInputDouble().GetPlayer().GetMousePos().X - mousePos.X;
-            var deltaY = Framework.GetClient().GetData().GetBuffer_FrontInputDouble().GetPlayer().GetMousePos().Y - mousePos.Y;
+            var deltaX = Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).GetMousePos().X - mousePos.X;
+            var deltaY = Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).GetMousePos().Y - mousePos.Y;
 
             // Apply the camera pitch and yaw (we clamp the pitch in the camera class)
             camera.Yaw += deltaX * sensitivity;

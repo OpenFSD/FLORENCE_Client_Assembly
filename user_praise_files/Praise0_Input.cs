@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLORENCE.Frame.Cli.Dat.UserIn
+namespace FLORENCE.Praise_Files
 {
     public class Praise0_Input
     {

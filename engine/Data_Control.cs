@@ -18,31 +18,31 @@ namespace FLORENCE.Frame.Cli.Dat
         
         }
 
-        public void PopFromStackOfInputActions(
-            FLORENCE.Frame.Cli.Dat.Input reference,
-            List<FLORENCE.Frame.Cli.Dat.Input> inputStack
+        public void Pop_Stack_InputActions(
+            FLORENCE.Input reference,
+            List<FLORENCE.Input> inputStack
         )
         {
             reference = inputStack[1];
             inputStack.RemoveAt(1);
         }
 
-        public void PopFromStackOfOutputReturns()
+        public void Pop_Stack_OutputRecieve()
         {
 
         }
 
-        public void PushToStackOfInputActions(
-            List<FLORENCE.Frame.Cli.Dat.Input> inputStack,
-            FLORENCE.Frame.Cli.Dat.Input praiseBuffer
+        public void Push_Stack_InputActions(
+            List<FLORENCE.Input> inputStack,
+            FLORENCE.Input praiseBuffer
         )
         {
             inputStack.Add(praiseBuffer);
         }
 
-        public void PushToStackOfOutputReturns(
-            List<FLORENCE.Frame.Cli.Dat.Output> outputStack,
-            FLORENCE.Frame.Cli.Dat.Input praiseBuffer
+        public void Push_Stack_OutputRecieve(
+            List<FLORENCE.Output> outputStack,
+            FLORENCE.Input praiseBuffer
         )
         {
             

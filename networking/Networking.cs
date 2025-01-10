@@ -136,7 +136,7 @@ namespace FLORENCE.Frame
             switch (switch_praiseEventId)
             {
                 case 0:
-                    FLORENCE.Frame.Cli.Dat.UserIn.Praise0_Input subSet = (FLORENCE.Frame.Cli.Dat.UserIn.Praise0_Input)FLORENCE.Framework.GetClient().GetData().GetBuffer_Back_TransmitInput().Get_InputBufferSubset();
+                    FLORENCE.Frame.Cli.Dat.UserIn.Praise0_Input subSet = (FLORENCE.Frame.Cli.Dat.UserIn.Praise0_Input)FLORENCE.Framework.GetClient().GetData().GetTransmitInputBuffer().Get_InputBufferSubset();
                     for (ushort index = 16; index < 32; index++)
                     {
                         intBytes = BitConverter.GetBytes(subSet.Get_Mouse_X());
