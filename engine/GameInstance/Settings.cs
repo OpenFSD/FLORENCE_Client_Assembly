@@ -25,7 +25,7 @@ namespace FLORENCE
             nws = NativeWindowSettings.Default;
             while (nws == null) { /* wait untill created */ }
             Set_refreshRate(60);
-            Set_systemInitialised(false);
+            //Set_systemInitialised(false);
             gws.UpdateFrequency = Get_refreshRate();
             nws.IsEventDriven = false;
             nws.API = OpenTK.Windowing.Common.ContextAPI.OpenGL;
@@ -74,11 +74,6 @@ namespace FLORENCE
         public void Set_refreshRate(int value)
         {
             refreshRate = value;
-        }
-
-        public static void Set_systemInitialised(bool value)
-        {
-            systemInitialised = value;
         }
     }
 }

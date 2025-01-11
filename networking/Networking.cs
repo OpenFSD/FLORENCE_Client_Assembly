@@ -1,5 +1,4 @@
-﻿using FLORENCE.Frame.Cli.Dat.UserIn;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +10,7 @@ using Valve.Sockets;
 using static System.Reflection.Metadata.BlobBuilder;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace FLORENCE.Frame
+namespace FLORENCE
 {
     public class Networking
     {
@@ -136,7 +135,7 @@ namespace FLORENCE.Frame
             switch (switch_praiseEventId)
             {
                 case 0:
-                    FLORENCE.Frame.Cli.Dat.UserIn.Praise0_Input subSet = (FLORENCE.Frame.Cli.Dat.UserIn.Praise0_Input)FLORENCE.Framework.GetClient().GetData().GetTransmitInputBuffer().Get_InputBufferSubset();
+                    FLORENCE.Praise_Files.Praise0_Input subSet = (FLORENCE.Praise_Files.Praise0_Input)FLORENCE.Framework.GetClient().GetData().GetInput_Instnace().GetTransmitInputBuffer().Get_InputBufferSubset();
                     for (ushort index = 16; index < 32; index++)
                     {
                         intBytes = BitConverter.GetBytes(subSet.Get_Mouse_X());
@@ -166,7 +165,7 @@ namespace FLORENCE.Frame
                 default:
                     break;
             }
-            sockets.SendMessageToConnection(connection, data);
+            //sockets.SendMessageToConnection(connection, data);
         }
 
         public static void CopyPayloadFromMessage()

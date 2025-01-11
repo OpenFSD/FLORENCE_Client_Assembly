@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLORENCE.Frame.Cli.Algo.UserAlg
+namespace FLORENCE.Praise_Files
 {
     public class Praise0_Algorithm
     {
@@ -13,8 +13,8 @@ namespace FLORENCE.Frame.Cli.Algo.UserAlg
         
         }
         public void Do_Praise(
-            FLORENCE.Frame.Cli.Dat.UserIn.Praise0_Input in_SubSet,
-            FLORENCE.Frame.Cli.Dat.UserOut.Praise0_Output out_SubSet
+            FLORENCE.Praise_Files.Praise0_Input in_SubSet,
+            FLORENCE.Praise_Files.Praise0_Output out_SubSet
         )
         {
 

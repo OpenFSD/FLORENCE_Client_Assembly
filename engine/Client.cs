@@ -17,11 +17,11 @@ namespace FLORENCE.Frame
         static private FLORENCE.Frame.Cli.Algorithms algorithms;
         static private FLORENCE.Frame.Cli.Data data;
         static private FLORENCE.Frame.Cli.Execute execute;
-        static private FLORENCE.Frame.Cli.Global global;
+        static private FLORENCE.Global global;
 
         public Client() 
         {
-            global = new FLORENCE.Frame.Cli.Global();
+            global = new FLORENCE.Global();
             while (global == null) { /* Wait while is created */ }
 
             algorithms = new FLORENCE.Frame.Cli.Algorithms(global.Get_NumCores());
@@ -47,7 +47,7 @@ namespace FLORENCE.Frame
             return data;
         }
 
-        public FLORENCE.Frame.Cli.Global GetGlobal()
+        public FLORENCE.Global GetGlobal()
         {
             return global;
         }

@@ -48,7 +48,13 @@ namespace FLORENCE.Frame.Cli
 
         public void Create_And_Run_Graphics()
         {
-            Framework.GetClient().GetData().GetThirdOutputBuffer().Initalise_Graphics();
+            using (var graphics = new FLORENCE.gFX.Graphics(
+                FLORENCE.Framework.GetClient().GetData().GetGame_Instance().GetSettings().GetGameWindowSettings(),
+                FLORENCE.Framework.GetClient().GetData().GetGame_Instance().GetSettings().GetNativeWindowSettings()
+            ))
+            {
+                graphics.Run();
+            }
         }
 
         public FLORENCE.Frame.Cli.Exe.Execute_Control GetExecute_Control()

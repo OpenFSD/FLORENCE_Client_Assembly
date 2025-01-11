@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLORENCE.Frame.Cli.Dat.Out
+namespace FLORENCE.gFX
 {
     public class Graphics : GameWindow
     {
@@ -67,8 +67,8 @@ namespace FLORENCE.Frame.Cli.Dat.Out
             );
             GL.BufferData(
                 BufferTarget.ArrayBuffer,
-                Framework.GetClient().GetData().GetBuffer_FrontOutputDouble().Get_Vertices().Length * sizeof(float),
-                Framework.GetClient().GetData().GetBuffer_FrontOutputDouble().Get_Vertices(),
+                Framework.GetClient().GetData().GetOutput_Instnace().GetBuffer_FrontOutputDouble().Get_Vertices().Length * sizeof(float),
+                Framework.GetClient().GetData().GetOutput_Instnace().GetBuffer_FrontOutputDouble().Get_Vertices(),
                 BufferUsageHint.StaticDraw
             );
 
@@ -80,8 +80,8 @@ namespace FLORENCE.Frame.Cli.Dat.Out
             );
             GL.BufferData(
                 BufferTarget.ElementArrayBuffer,
-                Framework.GetClient().GetData().GetBuffer_FrontOutputDouble().Get_Indices().Length * sizeof(uint),
-                Framework.GetClient().GetData().GetBuffer_FrontOutputDouble().Get_Indices(),
+                Framework.GetClient().GetData().GetOutput_Instnace().GetBuffer_FrontOutputDouble().Get_Indices().Length * sizeof(uint),
+                Framework.GetClient().GetData().GetOutput_Instnace().GetBuffer_FrontOutputDouble().Get_Indices(),
                 BufferUsageHint.StaticDraw
             );
             // draw square /\ /\ /\
@@ -193,70 +193,45 @@ namespace FLORENCE.Frame.Cli.Dat.Out
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
             base.OnUpdateFrame(e);
-            Framework.GetClient().GetData().SetInputBuffer(Framework.GetClient().GetData().GetEmptyInput());
+            float period = (float)e.Time;
+            Framework.GetClient().GetData().GetInput_Instnace().SetBuffer_Input(FLORENCE.Framework.GetClient().GetData().GetInput_Instnace().GetEmptyInput());
 
             if (!IsFocused) // Check to see if the window is focused
             {
                 return;
             }
-
             if (KeyboardState.IsKeyDown(Keys.Escape))
             {
                 this.Close();
             }
-
-            if (KeyboardState.IsKeyDown(Keys.W))
+            if (KeyboardState.IsKeyDown(Keys.W)
+                || KeyboardState.IsKeyDown(Keys.S)
+                || KeyboardState.IsKeyDown(Keys.A)
+                || KeyboardState.IsKeyDown(Keys.D)
+            )
             {
-                Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Move_Fowards(e);
+                Framework.GetClient().GetData().GetInput_Instnace().GetInputInstance_Control().SetIsSelected_PraiseEventId(1, true);
             }
 
-            if (KeyboardState.IsKeyDown(Keys.S))
-            {
-                Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Move_Backwards(e);
-                //
-            }
-            if (KeyboardState.IsKeyDown(Keys.A))
-            {
-                Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Move_Left(e);
-                //
-            }
-            if (KeyboardState.IsKeyDown(Keys.D))
-            {
-                Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Move_Right(e);
-                //
-            }
-            if (KeyboardState.IsKeyDown(Keys.Space))
-            {
-                //
-            }
-            if (KeyboardState.IsKeyDown(Keys.LeftShift))
-            {
-                //
-            }
-            Framework.GetClient().GetData().GetBuffer_FrontInputDouble().GetInputControl().CheckBufferAnomalyInFlagArray();
-            Framework.GetClient().GetData().Flip_InBufferToWrite();
             if (Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Get_isFirstMove()) // This bool variable is initially set to true.
             {
-                //TODO move to gameinstance
-                Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Set_isFirstMove(false);
                 Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Set_isFirstMove(false);
             }
             else
             {
-
-                for (int praiseEventId = 0; praiseEventId < Framework.GetClient().GetData().GetBuffer_BackInputDouble().GetInputControl().Get_NumberOfPraises(); praiseEventId++)
+                for(ushort praiseEventId = 0; praiseEventId < 2; praiseEventId++)
                 {
-                    if (Framework.GetClient().GetData().GetBuffer_BackInputDouble().GetInputControl().Get_IsSelected_PraiseEventId(praiseEventId) == true)
+                    if (Framework.GetClient().GetData().GetInput_Instnace().GetInputInstance_Control().Get_IsSelected_PraiseEventId(praiseEventId) == true)
                     {
-                        Framework.GetClient().GetData().GetBuffer_BackInputDouble().GetInputControl().SelectSetIntputSubset(praiseEventId);
-                        Framework.GetClient().GetData().GetBuffer_BackInputDouble().GetInputControl().LoadValuesInToInputSubset(praiseEventId);
-                        Framework.GetClient().GetData().GetData_Control().PushToStackOfInputActions(
-                            Framework.GetClient().GetData().GetStackOfInputActions(),
-                            Framework.GetClient().GetData().GetBuffer_BackInputDouble()
+                        Framework.GetClient().GetData().GetInput_Instnace().GetBuffer_BackInputDouble().GetInputControl().SelectSetIntputSubset(praiseEventId);
+                        Framework.GetClient().GetData().GetInput_Instnace().GetBuffer_BackInputDouble().GetInputControl().LoadValuesInToInputSubset(praiseEventId, period);
+                        Framework.GetClient().GetData().Flip_InBufferToWrite();
+                        Framework.GetClient().GetData().GetData_Control().Push_Stack_InputActions(
+                            Framework.GetClient().GetData().GetStack_InputActions(),
+                            Framework.GetClient().GetData().GetInput_Instnace().GetBuffer_BackInputDouble()
                         );
-                        Framework.GetClient().GetData().GetBuffer_BackInputDouble().GetInputControl().SetIsSelected_PraiseEventId(praiseEventId, false);
+                        Framework.GetClient().GetData().GetInput_Instnace().GetInputInstance_Control().SetIsSelected_PraiseEventId(praiseEventId, false);
                         Framework.GetClient().GetData().GetData_Control().SetFlag_InputStackLoaded(true);
-                        
                     }
                 }
             }

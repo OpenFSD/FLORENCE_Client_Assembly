@@ -82,7 +82,7 @@ namespace FLORENCE.Frame.Cli.Dat
         {
             GL.DrawElements(
                 PrimitiveType.Triangles,
-                data.GetThirdOutputBuffer().Get_Indices().Length,
+                data.GetOutput_Instnace().GetBuffer_FrontOutputDouble().Get_Indices().Length,
                 DrawElementsType.UnsignedInt,
                 0
             );

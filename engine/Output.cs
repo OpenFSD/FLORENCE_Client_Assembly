@@ -10,9 +10,7 @@ namespace FLORENCE
     public class Output
     {
         static private FLORENCE.Frame.Cli.Dat.Out.Output_Control output_Control;
-        private FLORENCE.Player player;
-
-        static private int praiseEventId;
+        static private UInt16 praiseEventId;
         static private Object praiseOutputBuffer_Subset;
 
         private static float[] vertices = {
@@ -70,7 +68,7 @@ namespace FLORENCE
 
         public Output()
         {
-            player = new FLORENCE.Player();
+            //player = new FLORENCE.Player();
 
             praiseEventId = new int();
             praiseEventId = 0;
@@ -78,17 +76,6 @@ namespace FLORENCE
             praiseOutputBuffer_Subset = null;
 
             System.Console.WriteLine("FLORENCE: Output");
-        }
-        public void Initalise_Graphics()
-        {
-            using (var graphics = new FLORENCE.Frame.Cli.Dat.Out.Graphics(
-                Framework.GetClient().GetData().GetGame_Instance().GetSettings().GetGameWindowSettings(),
-                Framework.GetClient().GetData().GetGame_Instance().GetSettings().GetNativeWindowSettings()
-            ))
-            {
-                Settings.Set_systemInitialised(true);
-                graphics.Run();
-            }
         }
 
         public void InitialiseControl()
@@ -109,11 +96,7 @@ namespace FLORENCE
         {
             return vertices;
         }
-        public FLORENCE.Player GetPlayer()
-        {
-            return player;
-        }
-
+ 
         public int GetPraiseEventId()
         {
             return praiseEventId;
@@ -124,7 +107,7 @@ namespace FLORENCE
             praiseOutputBuffer_Subset = value;
         }
 
-        public void SetPraiseEventId(int value)
+        public void SetPraiseEventId(ushort value)
         {
             praiseEventId = value;
         }

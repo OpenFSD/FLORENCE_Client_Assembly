@@ -8,45 +8,57 @@ namespace FLORENCE.Praise_Files
 {
     public class Praise1_Input
     {
-        static private Int16 position_X;
-        static private Int16 position_Y;
-        static private Int16 position_Z;
+        static private float position_X;
+        static private float position_Y;
+        static private float position_Z;
+        static private float period;
 
         public Praise1_Input()
         {
             position_X = 0;
             position_Y = 0;
             position_Z = 0;
+            period = 0;
         }
 
-        public Int16 Get_Position_X() 
+        public float Get_Position_X() 
         {   
             return position_X; 
         }
 
-        public Int16 Get_Position_Y()
+        public float Get_Position_Y()
         {
             return position_Y;
         }
 
-        public Int16 Get_Position_Z()
+        public float Get_Position_Z()
         {
             return position_Z;
         }
 
-        public void Set_Position_X(Int16 value) 
+        public float GetPeriod()
+        {
+            return period;
+        }
+        
+        public void Set_Position_X(float value) 
         {
             position_X = value;
         }
         
-        public void Set_Position_Y(Int16 value)
+        public void Set_Position_Y(float value)
         {
             position_Y = value;
         }
 
-        public void Set_Position_Z(Int16 value)
+        public void Set_Position_Z(float value)
         {
             position_Z = value;
+        }
+
+        public void Set_Period(float value)
+        {
+            period = value;
         }
     }
 }

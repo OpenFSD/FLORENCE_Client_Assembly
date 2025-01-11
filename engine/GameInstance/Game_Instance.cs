@@ -31,6 +31,16 @@ namespace FLORENCE
                 while (player[numberOfPlayers] == null) { /* Wait while is created */ }
             }
         }
+        public void Initalise_Graphics()
+        {
+            using (var graphics = new FLORENCE.gFX.Graphics(
+                Framework.GetClient().GetData().GetGame_Instance().GetSettings().GetGameWindowSettings(),
+                Framework.GetClient().GetData().GetGame_Instance().GetSettings().GetNativeWindowSettings()
+            ))
+            {
+                graphics.Run();
+            }
+        }
 
         public FLORENCE.Frame.Cli.Dat.Arena GetArena()
         {

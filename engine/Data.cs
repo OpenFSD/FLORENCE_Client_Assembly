@@ -1,4 +1,5 @@
 ﻿using FLORENCE.Frame.Cli.Dat;
+using FLORENCE.Inputs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,18 +12,15 @@ namespace FLORENCE.Frame.Cli
     {
         static private FLORENCE.Frame.Cli.Dat.Data_Control data_Control;
         static private FLORENCE.Game_Instance gameInstance;
+        static private FLORENCE.Settings settings;
         //byffers
-        static private FLORENCE.Input empty_InputBuffer;
-        static private FLORENCE.Output empty_OutputBuffer;
-        static private FLORENCE.Input[] inputDoubleBuffer;
-        static private FLORENCE.Output[] outputDoubleBuffer;
-        static private FLORENCE.Input transmitInputBuffer;
-        static private FLORENCE.Output transmitOutputBuffer;
+        static private FLORENCE.Inputs.Input_Instance input_Instnace;
+        static private FLORENCE.Outputs.Output_Instance output_Instnace;
         //stacks        
         static private List<FLORENCE.Input> stack_InputActions;
         static private List<FLORENCE.Output> stack_OutputRecieves;
         //praises
-        static private FLORENCE.Frame.Cli.Dat.User_I user_IO;
+        static private FLORENCE.Praise_Files.User_I user_IO;
 
         static private bool state_Buffer_Input_ToWrite;
         static private bool state_Buffer_Output_ToWrite;
@@ -30,28 +28,10 @@ namespace FLORENCE.Frame.Cli
         public Data()
         {
             data_Control = null;
-
-            empty_InputBuffer = new FLORENCE.Input();
-            while (empty_InputBuffer == null) { /* Wait while is created */ }
-            empty_InputBuffer.InitialiseControl();
-
-            empty_OutputBuffer = new FLORENCE.Output();
-            while (empty_OutputBuffer == null) { /* Wait while is created */ }
-            empty_OutputBuffer.InitialiseControl();
-
-            inputDoubleBuffer = new FLORENCE.Input[2];
-            for (byte index = 0; index < 2; index++)
-            {
-                inputDoubleBuffer[index] = empty_InputBuffer;
-                while (inputDoubleBuffer[index] == null) { /* Wait while is created */ }
-            }
-
-            outputDoubleBuffer = new FLORENCE.Output[2];
-            for (byte index = 0; index < 2; index++)
-            {
-                outputDoubleBuffer[index] = empty_OutputBuffer;
-                while (outputDoubleBuffer == null) { /* Wait while is created */ }
-            }
+            gameInstance = new FLORENCE.Game_Instance();
+            settings = new FLORENCE.Settings();
+            input_Instnace = new FLORENCE.Inputs.Input_Instance();
+            output_Instnace = new FLORENCE.Outputs.Output_Instance();   
 
             stack_InputActions = new List<FLORENCE.Input>();
             while (stack_InputActions == null) { /* Wait while is created */ }
@@ -59,33 +39,13 @@ namespace FLORENCE.Frame.Cli
             stack_OutputRecieves = new List<FLORENCE.Output>();
             while (stack_OutputRecieves == null) { /* Wait while is created */ }
 
-            transmitInputBuffer = new FLORENCE.Input();
-            while (stack_InputActions == null) { /* Wait while is created */ }
-
-            transmitOutputBuffer = new FLORENCE.Output();
-            while (stack_InputActions == null) { /* Wait while is created */ }
-
-            user_IO = new FLORENCE.Frame.Cli.Dat.User_I();
+            user_IO = new FLORENCE.Praise_Files.User_I();
             while (user_IO == null) { /* Wait while is created */ }
 
             state_Buffer_Input_ToWrite = true;
             state_Buffer_Output_ToWrite = false;
 
             System.Console.WriteLine("FLORENCE: Data");
-        }
-
-        public UInt16 BoolToInt16(bool value)
-        {
-            UInt16 temp = new UInt16();
-            if (value)
-            {
-                temp = (UInt16)1;
-            }
-            else if (!value)
-            {
-                temp = (UInt16)0;
-            }
-            return temp;
         }
 
         public void InitialiseControl()
@@ -108,19 +68,19 @@ namespace FLORENCE.Frame.Cli
             return data_Control;
         }
 
-        public FLORENCE.Input GetEmptyInput()
-        {
-            return empty_InputBuffer;
-        }
-        public FLORENCE.Output GetEmptyOutput()
-        {
-            return empty_OutputBuffer;
-        }
-
         public FLORENCE.Game_Instance GetGame_Instance()
         {
             return gameInstance;
-        }   
+        }
+
+        public FLORENCE.Inputs.Input_Instance GetInput_Instnace()
+        {
+            return input_Instnace;
+        }
+        public FLORENCE.Outputs.Output_Instance GetOutput_Instnace()
+        {
+            return output_Instnace;
+        }
 
         public bool GetState_Buffer_Input_ToWrite()
         {
@@ -130,56 +90,25 @@ namespace FLORENCE.Frame.Cli
         {
             return state_Buffer_Output_ToWrite;
         }
-        public FLORENCE.Input GetBuffer_FrontInputDouble()
+
+        public FLORENCE.Settings GetSettings()
         {
-            return inputDoubleBuffer[BoolToInt16(GetState_Buffer_Input_ToWrite())];
-        }
-        public FLORENCE.Input GetBuffer_BackInputDouble()
-        {
-            return inputDoubleBuffer[BoolToInt16(!GetState_Buffer_Input_ToWrite())];
+            return settings;
         }
 
-        public FLORENCE.Output GetBuffer_FrontOutputDouble()
-        {
-            return outputDoubleBuffer[BoolToInt16(GetState_Buffer_Output_ToWrite())];
-        }
-        public FLORENCE.Output GetBuffer_BackOutputDouble()
-        {
-            return outputDoubleBuffer[BoolToInt16(!GetState_Buffer_Output_ToWrite())];
-        }
-
-        public List<FLORENCE.Input> GetStackOfInputActions()
+        public List<FLORENCE.Input> GetStack_InputActions()
         {
             return stack_InputActions;
         }
 
-        public List<FLORENCE.Output> GetStackOfOutputsRecieved()
+        public List<FLORENCE.Output> GetStack_OutputsRecieved()
         {
             return stack_OutputRecieves;
         }
-        public FLORENCE.Input GetTransmitInputBuffer()
-        {
-            return transmitInputBuffer;
-        }
 
-        public FLORENCE.Output GetTransmitOutputBuffer()
-        {
-            return transmitOutputBuffer;
-        }
-
-        public FLORENCE.Frame.Cli.Dat.User_I GetUserIO()
+        public FLORENCE.Praise_Files.User_I GetUserIO()
         {
             return user_IO;
-        }
-
-        public void SetInputBuffer(FLORENCE.Input value)
-        {
-            inputDoubleBuffer[BoolToInt16(Framework.GetClient().GetData().GetState_Buffer_Input_ToWrite())] = value;
-        }
-
-        public void SetOutputBuffer(FLORENCE.Output value)
-        {
-            outputDoubleBuffer[BoolToInt16(Framework.GetClient().GetData().GetState_Buffer_Input_ToWrite())] = value;
         }
     }
 }

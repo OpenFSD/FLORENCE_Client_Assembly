@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLORENCE.Frame.Cli.Algo
+namespace FLORENCE
 { 
     public class IO_ListenRespond
     {
@@ -39,14 +39,11 @@ namespace FLORENCE.Frame.Cli.Algo
                             while(Framework.GetClient().GetData().GetData_Control().GetFlag_IsInputStackLoaded())
                             {
                                 Framework.GetClient().GetData().GetData_Control().Pop_Stack_InputActions(
-                                    Framework.GetClient().GetData().GetBuffer_BackInputDouble(),
-                                    Framework.GetClient().GetData().GetStackOfInputActions()
+                                    Framework.GetClient().GetData().GetInput_Instnace().GetTransmitInputBuffer(),
+                                    Framework.GetClient().GetData().GetStack_InputActions()
                                 );
-                                
-
-                                
                                 Networking.CreateAndSendNewMessage(
-                                    (UInt16)Framework.GetClient().GetData().GetTransmitInputBuffer().GetPraiseEventId()
+                                    (UInt16)Framework.GetClient().GetData().GetInput_Instnace().GetTransmitInputBuffer().GetPraiseEventId()
                                 );
                             }
                             

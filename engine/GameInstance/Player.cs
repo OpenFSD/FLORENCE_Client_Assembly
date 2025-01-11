@@ -32,37 +32,37 @@ namespace FLORENCE
             _firstMove = true;
             camera = new FLORENCE.Gfx.Camera(Vector3.UnitZ * 3, 16 / (float)9);
         }
-        public void Move_Backwards(FrameEventArgs e)
+        public void Move_Backwards(float period)
         {
             //TODO Create praise, push_stack_InputActions
-            Vector3 temp = camera.Position - (camera.Front * cameraSpeed * (float)e.Time); // Backwards
+            Vector3 temp = camera.Position - (camera.Front * cameraSpeed * period); // Backwards
             Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Set_PlayerPosition(
                 temp
             );          
         }
 
-        public void Move_Fowards(FrameEventArgs e)
+        public void Move_Fowards(float period)
         {
             //TODO Create praise, push_stack_InputActions
-            Vector3 temp = camera.Position + (camera.Front * cameraSpeed * (float)e.Time);// Forward
+            Vector3 temp = camera.Position + (camera.Front * cameraSpeed * period);// Forward
             Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Set_PlayerPosition(
                 temp
             );
         }
 
-        public void Move_Left(FrameEventArgs e)
+        public void Move_Left(float period)
         {
             //TODO Create praise, push_stack_InputActions
-            Vector3 temp = camera.Position - (camera.Right * cameraSpeed * (float)e.Time);// Left
+            Vector3 temp = camera.Position - (camera.Right * cameraSpeed * period);// Left
             Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Set_PlayerPosition(
                 temp
             );
         }
 
-        public void Move_Right(FrameEventArgs e)
+        public void Move_Right(float period)
         {
             //TODO Create praise, push_stack_InputActions
-            Vector3 temp = camera.Position + (camera.Right * cameraSpeed * (float)e.Time);// Right
+            Vector3 temp = camera.Position + (camera.Right * cameraSpeed * period);// Right
             Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Set_PlayerPosition(
                 temp
             );

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLORENCE.Frame.Cli
+namespace FLORENCE
 {
     public class Global
     {
@@ -16,6 +16,7 @@ namespace FLORENCE.Frame.Cli
         static private bool[] flag_write_WRITE;
         
         static private int numberOfCores;
+        static private int numberOfPraises;
 
         public Global() 
         {
@@ -33,6 +34,7 @@ namespace FLORENCE.Frame.Cli
             flag_write_WRITE[1] = false;
             
             numberOfCores = 4;
+            numberOfPraises = 2;
         }
         public bool GetConst_Core_ACTIVE()
         {
@@ -59,6 +61,11 @@ namespace FLORENCE.Frame.Cli
         public int Get_NumCores()
         {
             return numberOfCores;
+        }
+
+        public int Get_NumberOfPraises()
+        {
+            return numberOfPraises;
         }
     }
 }

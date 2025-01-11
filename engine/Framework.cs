@@ -9,7 +9,7 @@ namespace FLORENCE
     public class Framework
     {
         static private FLORENCE.Frame.Client client = null;
-        static private FLORENCE.Frame.Networking networkingClient;
+        static private FLORENCE.Networking networkingClient;
 
         static private Int16 threadId = 0;
 
@@ -32,7 +32,7 @@ namespace FLORENCE
             return client;
         }
 
-        static public FLORENCE.Frame.Networking GetNetworking()
+        static public FLORENCE.Networking GetNetworking()
         {
             return networkingClient;
         }
