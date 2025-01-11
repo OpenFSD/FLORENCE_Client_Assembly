@@ -123,13 +123,12 @@ namespace FLORENCE
             byte[] data = new byte[64];
             bool[] temp_bool_array = new bool[16];
 
-            byte[] intBytes = BitConverter.GetBytes(switch_praiseEventId);
-            if (BitConverter.IsLittleEndian)
-                Array.Reverse(intBytes);
-            byte[] result = intBytes;
-            for (ushort index = 0; index < result.Length; index++)
+            byte[] intBytes = null;
+
+            for (ushort index = 0; index < intBytes.Length; index++)
             {
-                data[index] = result[index];
+                intBytes = BitConverter.GetBytes(switch_praiseEventId);
+                data[index] = intBytes[index];
             }
 
             switch (switch_praiseEventId)
@@ -139,18 +138,12 @@ namespace FLORENCE
                     for (ushort index = 16; index < 32; index++)
                     {
                         intBytes = BitConverter.GetBytes(subSet.Get_Mouse_X());
-                        if (BitConverter.IsLittleEndian)
-                            Array.Reverse(intBytes);
-                        result = intBytes;
-                        data[index] = result[index];
+                        data[index] = intBytes[index];
                     }
                     for (ushort index = 32; index < 48; index++)
                     {
                         intBytes = BitConverter.GetBytes(subSet.Get_Mouse_Y());
-                        if (BitConverter.IsLittleEndian)
-                            Array.Reverse(intBytes);
-                        result = intBytes;
-                        data[index] = result[index];
+                        data[index] = intBytes[index];
                     }
                     for (ushort index = 48; index < 64; index++)
                     {
