@@ -5,54 +5,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLORENCE
+namespace Client_Assembly.game_Instance
 {
     public class Settings
     {
-        private GameWindowSettings gws;
-        private NativeWindowSettings nws;
-        
-        private ushort numberOfPlayers = 0;
-        
+        private OpenTK.Windowing.Desktop.GameWindowSettings gws;
+        private OpenTK.Windowing.Desktop.NativeWindowSettings nws;
+
         private static int refreshRate = 60;
         private static bool systemInitialised = false;
 
         public Settings()
         {
-            Console.WriteLine("FLORENCE: Settings");
-            gws = GameWindowSettings.Default;
-            while (gws == null) { /* wait untill created */ }
-            nws = NativeWindowSettings.Default;
-            while (nws == null) { /* wait untill created */ }
-            Set_refreshRate(60);
-            //Set_systemInitialised(false);
-            gws.UpdateFrequency = Get_refreshRate();
-            nws.IsEventDriven = false;
-            nws.API = OpenTK.Windowing.Common.ContextAPI.OpenGL;
-            nws.APIVersion = Version.Parse(input: "4.1");
-            nws.AutoLoadBindings = true;
-            nws.Location = new OpenTK.Mathematics.Vector2i(x: 100, y: 100);
-            nws.ClientSize = new OpenTK.Mathematics.Vector2i(x: 1280, y: 720);
-            nws.StartFocused = true;
-            nws.StartVisible = true;
-            nws.Title = "FLORENCE";
-
-            numberOfPlayers = 0;
+            System.Console.WriteLine("Client_Assembly: Settings");
+            this.gws = OpenTK.Windowing.Desktop.GameWindowSettings.Default;
+            while (this.gws == null) { /* wait untill created */ }
+            this.nws = OpenTK.Windowing.Desktop.NativeWindowSettings.Default;
+            while (this.nws == null) { /* wait untill created */ }
+            this.Set_refreshRate(60);
+            Set_systemInitialised(false);
+            this.gws.UpdateFrequency = this.Get_refreshRate();
+            this.nws.IsEventDriven = false;
+            this.nws.API = OpenTK.Windowing.Common.ContextAPI.OpenGL;
+            this.nws.APIVersion = Version.Parse(input: "4.1");
+            this.nws.AutoLoadBindings = true;
+            this.nws.Location = new OpenTK.Mathematics.Vector2i(x: 100, y: 100);
+            this.nws.ClientSize = new OpenTK.Mathematics.Vector2i(x: 1280, y: 720);
+            this.nws.StartFocused = true;
+            this.nws.StartVisible = true;
+            this.nws.Title = "Client_Assembly";
         }
 
         public GameWindowSettings GetGameWindowSettings()
         {
-            return gws;
+            return this.gws;
         }
 
         public NativeWindowSettings GetNativeWindowSettings()
         {
-            return nws;
-        }
-
-        public ushort GetNumberOfPlayers() 
-        {  
-            return numberOfPlayers; 
+            return this.nws;
         }
 
         public int Get_refreshRate()
@@ -65,15 +56,14 @@ namespace FLORENCE
             return systemInitialised;
 
         }
-
-        public void Add_Player()
-        {
-            numberOfPlayers = (ushort)(numberOfPlayers + 1);
-        }
-
         public void Set_refreshRate(int value)
         {
             refreshRate = value;
+        }
+
+        public static void Set_systemInitialised(bool value)
+        {
+            systemInitialised = value;
         }
     }
 }

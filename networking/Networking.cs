@@ -10,7 +10,7 @@ using Valve.Sockets;
 using static System.Reflection.Metadata.BlobBuilder;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace FLORENCE
+namespace Client_Assembly
 {
     public class Networking
     {
@@ -134,7 +134,7 @@ namespace FLORENCE
             switch (switch_praiseEventId)
             {
                 case 0:
-                    FLORENCE.Praise_Files.Praise0_Input subSet = (FLORENCE.Praise_Files.Praise0_Input)FLORENCE.Framework.GetClient().GetData().GetInput_Instnace().GetTransmitInputBuffer().Get_InputBufferSubset();
+                    Client_Assembly.Praise_Files.Praise0_Input subSet = (Client_Assembly.Praise_Files.Praise0_Input)Client_Assembly.Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().Get_InputBufferSubset();
                     for (ushort index = 16; index < 32; index++)
                     {
                         intBytes = BitConverter.GetBytes(subSet.Get_Mouse_X());

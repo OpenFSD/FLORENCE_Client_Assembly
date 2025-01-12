@@ -4,36 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLORENCE
+namespace Client_Assembly
 {
     public class Game_Instance
     {
-        static private FLORENCE.Frame.Cli.Dat.Arena arena;
-        static private FLORENCE.Frame.Cli.Dat.Map_Default mapDefault;
-        static private Settings settings;
-        static private FLORENCE.Player[] player;
+        static private Client_Assembly.game_Instance.Arena arena;
+        static private Client_Assembly.game_Instance.Map_Default mapDefault;
+        static private Client_Assembly.game_Instance.Settings settings;
+        static private Client_Assembly.game_Instance.Player[] player;
 
         public Game_Instance()
         {
-            arena = new FLORENCE.Frame.Cli.Dat.Arena();
+            arena = new Client_Assembly.game_Instance.Arena();
             while (arena == null) { /* Wait while is created */ }
 
-            settings = new FLORENCE.Settings();
+            settings = new Client_Assembly.game_Instance.Settings();
             while (settings == null) { /* Wait while is created */ }
 
-            mapDefault = new FLORENCE.Frame.Cli.Dat.Map_Default();
+            mapDefault = new Client_Assembly.game_Instance.Map_Default();
             while (mapDefault == null) { /* Wait while is created */ }
 
-            player = new FLORENCE.Player[2];
+            player = new Client_Assembly.game_Instance.Player[2];
             for(ushort numberOfPlayers =0; numberOfPlayers < 2; numberOfPlayers++)
             {
-                player[numberOfPlayers] = new FLORENCE.Player();
+                player[numberOfPlayers] = new Client_Assembly.game_Instance.Player();
                 while (player[numberOfPlayers] == null) { /* Wait while is created */ }
             }
         }
         public void Initalise_Graphics()
         {
-            using (var graphics = new FLORENCE.gFX.Graphics(
+            using (var graphics = new Client_Assembly.game_Instance.gFX.Graphics(
                 Framework.GetClient().GetData().GetGame_Instance().GetSettings().GetGameWindowSettings(),
                 Framework.GetClient().GetData().GetGame_Instance().GetSettings().GetNativeWindowSettings()
             ))
@@ -42,33 +42,33 @@ namespace FLORENCE
             }
         }
 
-        public FLORENCE.Frame.Cli.Dat.Arena GetArena()
+        public Client_Assembly.game_Instance.Arena GetArena()
         {
             return arena;
         }
 
-        public FLORENCE.Frame.Cli.Dat.Map_Default GetMapDefault()
+        public Client_Assembly.game_Instance.Map_Default GetMapDefault()
         {
             return mapDefault;
         }
 
-        public Settings GetSettings()
+        public Client_Assembly.game_Instance.Settings GetSettings()
         {
             return settings;
         }
 
-        public FLORENCE.Player GetPlayer(ushort index_playerID)
+        public Client_Assembly.game_Instance.Player GetPlayer(ushort index_playerID)
         {
             return player[index_playerID];
         }
 
-        public void SetAdd_NewPlayer(FLORENCE.Player value)
-        {
+        public void SetAdd_NewPlayer(Client_Assembly.game_Instance.Player value)
+        {/*
             settings.Add_Player();
-            player = new FLORENCE.Player[settings.GetNumberOfPlayers()];
+            player = new Client_Assembly.Player[settings.GetNumberOfPlayers()];
 
             player[settings.GetNumberOfPlayers()-1] = value;
 
-        }
+        */}
     }
 }

@@ -5,11 +5,11 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLORENCE
+namespace Client_Assembly.Outputs
 {
     public class Output
     {
-        static private FLORENCE.Frame.Cli.Dat.Out.Output_Control output_Control;
+        static private Client_Assembly.Outputs.Output_Control output_Control;
         static private UInt16 praiseEventId;
         static private Object praiseOutputBuffer_Subset;
 
@@ -68,19 +68,19 @@ namespace FLORENCE
 
         public Output()
         {
-            //player = new FLORENCE.Player();
+            //player = new Client_Assembly.Player();
 
             praiseEventId = new int();
             praiseEventId = 0;
 
             praiseOutputBuffer_Subset = null;
 
-            System.Console.WriteLine("FLORENCE: Output");
+            System.Console.WriteLine("Client_Assembly: Output");
         }
 
         public void InitialiseControl()
         {
-            output_Control = new FLORENCE.Frame.Cli.Dat.Out.Output_Control();
+            output_Control = new Client_Assembly.Outputs.Output_Control();
             while (output_Control == null) { /* Wait while is created */ }
         }
         public uint[] Get_Indices()

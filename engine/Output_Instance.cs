@@ -4,28 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLORENCE.Outputs
+namespace Client_Assembly.Outputs
 {
     public class Output_Instance
     {
-        static private FLORENCE.Output empty_OutputBuffer;
-        static private FLORENCE.Output[] outputDoubleBuffer;
-        static private FLORENCE.Output transmitOutputBuffer;
+        static private Client_Assembly.Outputs.Output empty_OutputBuffer;
+        static private Client_Assembly.Outputs.Output[] outputDoubleBuffer;
+        static private Client_Assembly.Outputs.Output transmitOutputBuffer;
 
         public Output_Instance() 
         {
-            empty_OutputBuffer = new FLORENCE.Output();
+            empty_OutputBuffer = new Client_Assembly.Outputs.Output();
             while (empty_OutputBuffer == null) { /* Wait while is created */ }
             empty_OutputBuffer.InitialiseControl();
 
-            outputDoubleBuffer = new FLORENCE.Output[2];
+            outputDoubleBuffer = new Client_Assembly.Outputs.Output[2];
             for (byte index = 0; index < 2; index++)
             {
                 outputDoubleBuffer[index] = empty_OutputBuffer;
                 while (outputDoubleBuffer == null) { /* Wait while is created */ }
             }
 
-            transmitOutputBuffer = new FLORENCE.Output();
+            transmitOutputBuffer = new Client_Assembly.Outputs.Output();
             while (transmitOutputBuffer == null) { /* Wait while is created */ }
 
         }
@@ -44,33 +44,28 @@ namespace FLORENCE.Outputs
             return temp;
         }
 
-        public FLORENCE.Output GetEmptyOutput()
+        public Client_Assembly.Outputs.Output GetEmptyOutput()
         {
             return empty_OutputBuffer;
         }
-        public FLORENCE.Output GetBuffer_FrontOutputDouble()
+        public Client_Assembly.Outputs.Output GetBuffer_FrontOutputDouble()
         {
-            return outputDoubleBuffer[BoolToInt16(FLORENCE.Framework.GetClient().GetData().GetState_Buffer_Output_ToWrite())];
+            return outputDoubleBuffer[BoolToInt16(Client_Assembly.Framework.GetClient().GetData().GetState_Buffer_OutputPraise_SideToWrite())];
         }
-        public FLORENCE.Output GetBuffer_BackOutputDouble()
+        public Client_Assembly.Outputs.Output GetBuffer_BackOutputDouble()
         {
-            return outputDoubleBuffer[BoolToInt16(!FLORENCE.Framework.GetClient().GetData().GetState_Buffer_Output_ToWrite())];
+            return outputDoubleBuffer[BoolToInt16(!Client_Assembly.Framework.GetClient().GetData().GetState_Buffer_OutputPraise_SideToWrite())];
         }
 
-        public FLORENCE.Output GetTransmitOutputBuffer()
+        public Client_Assembly.Outputs.Output GetTransmitOutputBuffer()
         {
             return transmitOutputBuffer;
         }
 
 
-        public void SetBuffer_Output(FLORENCE.Output value)
+        public void SetBuffer_Output(Client_Assembly.Outputs.Output value)
         {
-            outputDoubleBuffer[BoolToInt16(!Framework.GetClient().GetData().GetState_Buffer_Input_ToWrite())] = value;
-        }
-
-        public void SetBuffer_SubSet_OutputAction(FLORENCE.Output value)
-        {
-            outputDoubleBuffer[BoolToInt16(!Framework.GetClient().GetData().GetState_Buffer_Input_ToWrite())] = value;
+            outputDoubleBuffer[BoolToInt16(!Framework.GetClient().GetData().GetState_Buffer_OutputPraise_SideToWrite())] = value;
         }
     }
 }

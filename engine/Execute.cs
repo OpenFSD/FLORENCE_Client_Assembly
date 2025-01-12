@@ -5,11 +5,11 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 
-namespace FLORENCE.Frame.Cli
+namespace Client_Assembly
 {
     public class Execute
     {
-        static private FLORENCE.Frame.Cli.Exe.Execute_Control execute_Control;
+        static private Client_Assembly.Execute_Control execute_Control;
         private Thread[] concurrent = null;
         private Thread listenRespond = null;
         private Thread[] threads = null;
@@ -25,7 +25,7 @@ namespace FLORENCE.Frame.Cli
             Global global
         )
         {
-            execute_Control = new FLORENCE.Frame.Cli.Exe.Execute_Control(numberOfCores);
+            execute_Control = new Client_Assembly.Execute_Control(numberOfCores);
             while (execute_Control == null) { /* Wait while is created */ }
         }
 
@@ -48,16 +48,16 @@ namespace FLORENCE.Frame.Cli
 
         public void Create_And_Run_Graphics()
         {
-            using (var graphics = new FLORENCE.gFX.Graphics(
-                FLORENCE.Framework.GetClient().GetData().GetGame_Instance().GetSettings().GetGameWindowSettings(),
-                FLORENCE.Framework.GetClient().GetData().GetGame_Instance().GetSettings().GetNativeWindowSettings()
+            using (var graphics = new Client_Assembly.game_Instance.gFX.Graphics(
+                Client_Assembly.Framework.GetClient().GetData().GetGame_Instance().GetSettings().GetGameWindowSettings(),
+                Client_Assembly.Framework.GetClient().GetData().GetGame_Instance().GetSettings().GetNativeWindowSettings()
             ))
             {
                 graphics.Run();
             }
         }
 
-        public FLORENCE.Frame.Cli.Exe.Execute_Control GetExecute_Control()
+        public Client_Assembly.Execute_Control GetExecute_Control()
         {
             return execute_Control;
         }

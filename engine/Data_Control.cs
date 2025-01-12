@@ -1,12 +1,11 @@
-﻿using FLORENCE.Frame.Cli.Dat;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLORENCE.Frame.Cli.Dat
+namespace Client_Assembly
 {
     public class Data_Control
     {
@@ -19,8 +18,8 @@ namespace FLORENCE.Frame.Cli.Dat
         }
 
         public void Pop_Stack_InputActions(
-            FLORENCE.Input reference,
-            List<FLORENCE.Input> inputStack
+            Client_Assembly.Inputs.Input reference,
+            List<Client_Assembly.Inputs.Input> inputStack
         )
         {
             reference = inputStack[1];
@@ -33,16 +32,16 @@ namespace FLORENCE.Frame.Cli.Dat
         }
 
         public void Push_Stack_InputActions(
-            List<FLORENCE.Input> inputStack,
-            FLORENCE.Input praiseBuffer
+            List<Client_Assembly.Inputs.Input> inputStack,
+            Client_Assembly.Inputs.Input praiseBuffer
         )
         {
             inputStack.Add(praiseBuffer);
         }
 
         public void Push_Stack_OutputRecieve(
-            List<FLORENCE.Output> outputStack,
-            FLORENCE.Input praiseBuffer
+            List<Client_Assembly.Outputs.Output> outputStack,
+            Client_Assembly.Outputs.Output praiseBuffer
         )
         {
             

@@ -1,21 +1,21 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace FLORENCE
+namespace Client_Assembly
 {
     public class Program
     {
-        static private FLORENCE.Framework framework;
+        static private Client_Assembly.Framework framework;
 
         public static void Main(String[] args)
         {
-            framework = new FLORENCE.Framework();
+            framework = new Client_Assembly.Framework();
             while (framework == null) { /* wait untill is created */ }
             Framework.GetClient().GetExecute().Create_And_Run_Graphics();
 
-            System.Console.WriteLine("FLORENCE START");//TEST
+            System.Console.WriteLine("Client_Assembly START");//TEST
         }
 
-        static public FLORENCE.Framework GetFramework()
+        static public Client_Assembly.Framework GetFramework()
         {
             return framework;
         }

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLORENCE.Frame.Cli.Algo
+namespace Client_Assembly
 {
     public class Concurrent
     {
-        static private FLORENCE.Frame.Cli.Algo.Conc.Concurrent_Control concurrent_Control;
+        static private Client_Assembly.Concurrent_Control concurrent_Control;
         public Concurrent() 
         {
             concurrent_Control = null;
@@ -16,7 +16,7 @@ namespace FLORENCE.Frame.Cli.Algo
 
         public void InitialiseControl()
         {
-            concurrent_Control = new FLORENCE.Frame.Cli.Algo.Conc.Concurrent_Control();
+            concurrent_Control = new Client_Assembly.Concurrent_Control();
             while (concurrent_Control == null) { /* Wait while is created */ }
         }
 

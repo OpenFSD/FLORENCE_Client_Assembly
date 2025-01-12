@@ -1,5 +1,4 @@
-﻿using FLORENCE.Frame.Cli.Dat.Out.Gfx;
-using OpenTK.Mathematics;
+﻿using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using System;
 using System.Collections.Generic;
@@ -8,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLORENCE
+namespace Client_Assembly.game_Instance
 {
     public class Player
     {
-        private FLORENCE.Gfx.Camera camera;
+        private Client_Assembly.game_Instance.gFX.Camera camera;
 
         private bool _firstMove = false;
 
@@ -30,7 +29,7 @@ namespace FLORENCE
         public Player() 
         {
             _firstMove = true;
-            camera = new FLORENCE.Gfx.Camera(Vector3.UnitZ * 3, 16 / (float)9);
+            camera = new Client_Assembly.game_Instance.gFX.Camera(Vector3.UnitZ * 3, 16 / (float)9);
         }
         public void Move_Backwards(float period)
         {
@@ -68,7 +67,7 @@ namespace FLORENCE
             );
         }
 
-        public FLORENCE.Gfx.Camera GetCamera()
+        public Client_Assembly.game_Instance.gFX.Camera GetCamera()
         {
             return camera;
         }
@@ -80,7 +79,7 @@ namespace FLORENCE
 
         public int GetInt_OfInputBuffer()
         {
-            if (Framework.GetClient().GetData().GetState_Buffer_Input_ToWrite() == false)
+            if (Framework.GetClient().GetData().GetState_Buffer_InputPraise_SideToWrite() == false)
             {
                 return (Int16)0;
             }

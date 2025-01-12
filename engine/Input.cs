@@ -1,9 +1,9 @@
 ﻿
-namespace FLORENCE
+namespace Client_Assembly.Inputs
 {
     public class Input
     {
-        static private FLORENCE.Inputs.Input_Control input_Control;
+        static private Client_Assembly.Inputs.Input_Control input_Control;
         static private Object praiseInputBuffer_Subset;
         static private UInt16 praiseEventId;
 
@@ -13,12 +13,12 @@ namespace FLORENCE
             praiseInputBuffer_Subset = null;
             praiseEventId = new int();
             praiseEventId = 0;
-            System.Console.WriteLine("FLORENCE: Input");
+            System.Console.WriteLine("Client_Assembly: Input");
         }
 
         public void InitialiseControl() 
         {
-            input_Control = new FLORENCE.Inputs.Input_Control();
+            input_Control = new Client_Assembly.Inputs.Input_Control();
             while (input_Control == null) { /* Wait while is created */ }
         }
 
@@ -27,7 +27,7 @@ namespace FLORENCE
             return praiseInputBuffer_Subset;
         }
 
-        public FLORENCE.Inputs.Input_Control GetInputControl()
+        public Client_Assembly.Inputs.Input_Control GetInputControl()
         {
             return input_Control;
         }

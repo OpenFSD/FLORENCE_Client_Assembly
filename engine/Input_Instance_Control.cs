@@ -1,5 +1,5 @@
 ﻿
-namespace FLORENCE.Inputs
+namespace Client_Assembly.Inputs
 {
     public class Input_Instance_Control
     {

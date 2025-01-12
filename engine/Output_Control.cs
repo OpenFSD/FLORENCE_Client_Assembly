@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLORENCE.Frame.Cli.Dat.Out
+namespace Client_Assembly.Outputs
 {
     public class Output_Control
     {
@@ -54,7 +54,7 @@ namespace FLORENCE.Frame.Cli.Dat.Out
                 if (isSelected_PraiseEventId[praiseEventId_B] == true)
                 {
                     SelectSetOutputSubset(praiseEventId_B);
-                    
+
                     Networking.CreateAndSendNewMessage((ushort)praiseEventId_B);
                     isSelected_PraiseEventId[praiseEventId_B] = false;
                 }
@@ -66,17 +66,13 @@ namespace FLORENCE.Frame.Cli.Dat.Out
         {
             switch (praiseEventId)
             {
-//===
-//===
                 case 0:
-                    Framework.GetClient().GetData().GetOutput_Instnace().GetBuffer_BackOutputDouble().SetInputBufferSubSet(Framework.GetClient().GetData().GetUserIO().GetPraise1_Input());
+                    Client_Assembly.Framework.GetClient().GetData().GetOutput_Instnace().GetBuffer_BackOutputDouble().SetInputBufferSubSet(Framework.GetClient().GetData().GetUserIO().GetPraise1_Input());
                     break;
 
                 case 1:
-                    Framework.GetClient().GetData().GetOutput_Instnace().GetBuffer_BackOutputDouble().SetInputBufferSubSet(Framework.GetClient().GetData().GetUserIO().GetPraise0_Input());
+                    Client_Assembly.Framework.GetClient().GetData().GetOutput_Instnace().GetBuffer_BackOutputDouble().SetInputBufferSubSet(Framework.GetClient().GetData().GetUserIO().GetPraise0_Input());
                     break;
-//===
-//===
             }
         }
     }

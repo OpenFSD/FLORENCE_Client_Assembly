@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLORENCE.Frame.Cli.Dat
+namespace Client_Assembly.game_Instance
 {
     public class Arena
     {

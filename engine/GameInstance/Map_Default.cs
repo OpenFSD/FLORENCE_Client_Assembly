@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLORENCE.Frame.Cli.Dat
+namespace Client_Assembly.game_Instance
 {
     public class Map_Default
     {
@@ -75,10 +75,10 @@ namespace FLORENCE.Frame.Cli.Dat
             hexagon_corner_Colour[19] = (double)1.0f;
             hexagon_corner_Colour[20] = (double)1.0f;
 
-            System.Console.WriteLine("FLORENCE: Map_Default");
+            System.Console.WriteLine("Client_Assembly: Map_Default");
         }
 
-        public void Draw_Square(FLORENCE.Frame.Cli.Data data)
+        public void Draw_Square(Client_Assembly.Data data)
         {
             GL.DrawElements(
                 PrimitiveType.Triangles,

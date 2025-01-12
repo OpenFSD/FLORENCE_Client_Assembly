@@ -1,5 +1,5 @@
 ﻿
-namespace FLORENCE.Outputs
+namespace Client_Assembly.Outputs
 {
     public class Output_Instance_Control
     {

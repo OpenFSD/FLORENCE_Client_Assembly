@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 
-namespace FLORENCE.Frame.Cli.Exe
+namespace Client_Assembly
 {
     public class Execute_Control
     {
