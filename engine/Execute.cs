@@ -10,9 +10,9 @@ namespace Client_Assembly
     public class Execute
     {
         static private Client_Assembly.Execute_Control execute_Control;
-        private Thread[] concurrent = null;
-        private Thread listenRespond = null;
-        private Thread[] threads = null;
+        static private Thread[] concurrent = null;
+        static private Thread listenRespond = null;
+        static private Thread[] threads = null;
 
         public Execute(int numberOfCores) 
         {

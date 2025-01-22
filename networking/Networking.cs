@@ -124,17 +124,16 @@ namespace Client_Assembly
             bool[] temp_bool_array = new bool[16];
 
             byte[] intBytes = null;
-
+            intBytes = BitConverter.GetBytes(switch_praiseEventId);
             for (ushort index = 0; index < intBytes.Length; index++)
             {
-                intBytes = BitConverter.GetBytes(switch_praiseEventId);
                 data[index] = intBytes[index];
             }
 
             switch (switch_praiseEventId)
             {
                 case 0:
-                    Client_Assembly.Praise_Files.Praise0_Input subSet = (Client_Assembly.Praise_Files.Praise0_Input)Client_Assembly.Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().Get_InputBufferSubset();
+                    Client_Assembly.Praise_Files.Praise0_Input subSet = (Client_Assembly.Praise_Files.Praise0_Input)Client_Assembly.Framework.GetClient().GetData().GetInput_Instnace().GetBuffer_Front_InputDouble().Get_InputBufferSubset();
                     for (ushort index = 16; index < 32; index++)
                     {
                         intBytes = BitConverter.GetBytes(subSet.Get_Mouse_X());
@@ -152,13 +151,14 @@ namespace Client_Assembly
                     break;
 
                 case 1:
-                    //ToDo
+                    Client_Assembly.Praise_Files.Praise1_Input subSet_praise1 = (Client_Assembly.Praise_Files.Praise1_Input)Client_Assembly.Framework.GetClient().GetData().GetInput_Instnace().GetBuffer_Front_InputDouble().Get_InputBufferSubset();
+                    
                     break;
 
                 default:
                     break;
             }
-            //sockets.SendMessageToConnection(connection, data);
+            sockets.SendMessageToConnection(connection, data);
         }
 
         public static void CopyPayloadFromMessage()

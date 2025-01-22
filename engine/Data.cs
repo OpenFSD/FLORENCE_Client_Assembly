@@ -15,8 +15,8 @@ namespace Client_Assembly
         static private Client_Assembly.Inputs.Input_Instance input_Instnace;
         static private Client_Assembly.Outputs.Output_Instance output_Instnace;
         //stacks        
-        static private List<Client_Assembly.Inputs.Input> stack_InputActions;
-        static private List<Client_Assembly.Outputs.Output> stack_OutputRecieves;
+        static private List<Client_Assembly.Inputs.Input> stack_Client_InputActions;
+        static private List<Client_Assembly.Outputs.Output> stack_Client_OutputRecieves;
         //praises
         static private Client_Assembly.Praise_Files.User_I user_IO;
 
@@ -39,11 +39,11 @@ namespace Client_Assembly
             output_Instnace = new Client_Assembly.Outputs.Output_Instance();
             while (output_Instnace == null) { /* Wait while is created */ }
 
-            stack_InputActions = new List<Client_Assembly.Inputs.Input>();
-            while (stack_InputActions == null) { /* Wait while is created */ }
+            stack_Client_InputActions = new List<Client_Assembly.Inputs.Input>();
+            while (stack_Client_InputActions == null) { /* Wait while is created */ }
 
-            stack_OutputRecieves = new List<Client_Assembly.Outputs.Output>();
-            while (stack_OutputRecieves == null) { /* Wait while is created */ }
+            stack_Client_OutputRecieves = new List<Client_Assembly.Outputs.Output>();
+            while (stack_Client_OutputRecieves == null) { /* Wait while is created */ }
 
             user_IO = new Client_Assembly.Praise_Files.User_I();
             while (user_IO == null) { /* Wait while is created */ }
@@ -104,12 +104,12 @@ namespace Client_Assembly
 
         public List<Client_Assembly.Inputs.Input> GetStack_InputActions()
         {
-            return stack_InputActions;
+            return stack_Client_InputActions;
         }
 
         public List<Client_Assembly.Outputs.Output> GetStack_OutputsRecieved()
         {
-            return stack_OutputRecieves;
+            return stack_Client_OutputRecieves;
         }
 
         public Client_Assembly.Praise_Files.User_I GetUserIO()

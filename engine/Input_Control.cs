@@ -25,7 +25,7 @@ namespace Client_Assembly.Inputs
 
                 case 1:
                     Client_Assembly.game_Instance.Player data_Player_praise1 = (Client_Assembly.game_Instance.Player)Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0);
-                    Client_Assembly.Praise_Files.Praise1_Input desternation_Subset = (Client_Assembly.Praise_Files.Praise1_Input)Framework.GetClient().GetData().GetInput_Instnace().GetBuffer_Front_InputDouble().Get_InputBufferSubset();
+                    Client_Assembly.Praise_Files.Praise1_Input desternation_Subset = (Client_Assembly.Praise_Files.Praise1_Input)newSLot_Stack_InputAction.Get_InputBufferSubset();
                     desternation_Subset.Set_Position_X(data_Player_praise1.GetPlayerPosition().X);
                     desternation_Subset.Set_Position_Y(data_Player_praise1.GetPlayerPosition().X);
                     desternation_Subset.Set_Position_Z(data_Player_praise1.GetPlayerPosition().X);

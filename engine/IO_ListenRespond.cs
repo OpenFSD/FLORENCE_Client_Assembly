@@ -24,43 +24,33 @@ namespace Client_Assembly
         public void Thread_io_ListenRespond()
         {
             Framework.GetClient().GetExecute().GetExecute_Control().SetConditionCodeOfThisThreadedCore(threadId);
-            while (Framework.GetClient().GetExecute().GetExecute_Control().GetFlag_SystemInitialised((short)Framework.GetClient().GetGlobal().Get_NumCores()) == false)
+            while (Framework.GetClient().GetExecute().GetExecute_Control().GetFlag_SystemInitialised((short)Framework.GetClient().GetGlobal().Get_NumCores()) != false)
             {
                 // wait untill ALL threads initalised in preperation of system init.
             }
-            while (true)
+            while (false)
             {
                 switch (Framework.GetClient().GetAlgorithms().GetIO_ListenRespond().GetIO_Control().GetFlag_IO_ThreadState())
                 {
                     case true:
+                        Florence.WriteEnable.Stack_InputAction.Write_Start(1);
+                        while(Framework.GetClient().GetData().GetData_Control().GetFlag_IsLoaded_Stack_InputAction())
                         {
-                            while(Framework.GetClient().GetData().GetData_Control().GetFlag_IsInputStackLoaded())
-                            {
-                                Framework.GetClient().GetData().GetData_Control().Pop_Stack_InputActions(
-                                    Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer(),
-                                    Framework.GetClient().GetData().GetStack_InputActions()
-                                );
-                                Networking.CreateAndSendNewMessage(
-                                    (UInt16)Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetPraiseEventId()
-                                );
-                            }
-                            
-                            break;
+                            Framework.GetClient().GetData().GetData_Control().Pop_Stack_InputActions(
+                                Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer(),
+                                Framework.GetClient().GetData().GetStack_InputActions()
+                            );
+                            Networking.CreateAndSendNewMessage(
+                                (UInt16)Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetPraiseEventId()
+                            );
                         }
+                        Florence.WriteEnable.Stack_InputAction.Write_End(1);                            
+                        break;
+                        
                     case false:
-                        {
-                            Networking.CopyPayloadFromMessage();
-
-                            break;
-                        }
+                        Networking.CopyPayloadFromMessage();
+                        break;
                 }
-                
-
-
-
-
-
-
             }
         }
         public Client_Assembly.IO_ListenRespond_Control GetIO_Control()

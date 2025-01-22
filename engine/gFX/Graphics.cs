@@ -1,4 +1,5 @@
-﻿using OpenTK.Graphics.OpenGL;
+﻿using Florence.WriteEnable;
+using OpenTK.Graphics.OpenGL;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
@@ -219,12 +220,13 @@ namespace Client_Assembly.game_Instance.gFX
             }
             else
             {
-                for(ushort praiseEventId = 0; praiseEventId < 2; praiseEventId++)
+                Florence.WriteEnable.Stack_InputAction.Write_Start(0);
+                for (ushort praiseEventId = 0; praiseEventId < 2; praiseEventId++)
                 {
                     if (Framework.GetClient().GetData().GetInput_Instnace().GetInputInstance_Control().Get_IsSelected_PraiseEventId(praiseEventId) == true)
                     {
-                        Framework.GetClient().GetData().GetInput_Instnace().GetBuffer_Back_InputDouble().GetInputControl().SelectSetIntputSubset(praiseEventId);
-                        Framework.GetClient().GetData().GetInput_Instnace().GetBuffer_Back_InputDouble().GetInputControl().LoadValuesInToInputSubset(praiseEventId, period);
+                        Framework.GetClient().GetData().GetInput_Instnace().GetBuffer_Front_InputDouble().GetInputControl().SelectSetIntputSubset(praiseEventId);
+                        Framework.GetClient().GetData().GetInput_Instnace().GetBuffer_Front_InputDouble().GetInputControl().LoadValuesInToInputSubset(praiseEventId, period);
                         Framework.GetClient().GetData().Flip_InBufferToWrite();
                         Framework.GetClient().GetData().GetData_Control().Push_Stack_InputActions(
                             Framework.GetClient().GetData().GetStack_InputActions(),
@@ -234,6 +236,7 @@ namespace Client_Assembly.game_Instance.gFX
                         Framework.GetClient().GetData().GetData_Control().SetFlag_InputStackLoaded(true);
                     }
                 }
+                Florence.WriteEnable.Stack_InputAction.Write_End(0);
             }
         }
 
