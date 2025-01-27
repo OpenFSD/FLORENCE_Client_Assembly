@@ -1,21 +1,32 @@
-# How To Guide: Florence - Client Assembly.
+# How To Guide: Florence - Full Stack Development.
 
 ## Flow.
-Start: capture user periferal inputs and process each screen refresh.
+- Start: Capture user periferal inputs and process each screen refresh.
 
-FLORENCE_Client_Assembly\engine\gFX\Graphics.cs => ```protected override void OnUpdateFrame(FrameEventArgs e)```
+- File: FLORENCE_Client_Assembly\engine\gFX\Graphics.cs => ```protected override void OnUpdateFrame(FrameEventArgs e)```
 
-- Stack_Client_InputAction.
+- Push To - Stack_Client_InputAction.
 
-FLORENCE_Client_Assembly\engine\IO_ListenRespond.cs => ```public void Thread_io_ListenRespond()```
+- Pop From - Stack_Client_InputAction.
 
-Networking Client Send.
+- FLORENCE_Client_Assembly\engine\IO_ListenRespond.cs => ```public void Thread_io_ListenRespond()```
 
-Networking Server Recieve.
+- Networking Client Send.
 
-- Stack_Server_InputAction.
+- Networking Server Recieve.
+
+- Push To - Stack_Server_InputAction.
+
+- Launch Concurrency Que.
+
+- Pop From - Stack_Server_InputAction.
+
   
 - Stack_Server_InputPraise.
 - Stack_Server_OutputPraise.
 - Stack_Server_OutputRecieve.
 - Stack_Client_OutputRecieve.
+
+## Client Assembly.
+
+## Server Assembly.
