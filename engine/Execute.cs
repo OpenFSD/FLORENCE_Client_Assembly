@@ -19,8 +19,8 @@ namespace Client_Assembly
             execute_Control = null;
             threads = new Thread[numberOfCores];//NUMBER OF CORES
             concurrent = new Thread[numberOfCores-2];//NUMBER OF CORES
-            Florence.WriteEnable.Stack_Client_OutputRecieve.Create_WriteEnable();
-            Florence.Concurrency.ConcurrentQue_Client.Create_ConcurrentQue();
+            //Florence.WriteEnable.Stack_Client_OutputRecieve.Create_WriteEnable();
+            //Florence.Concurrency.ConcurrentQue_Client.Create_ConcurrentQue();
         }
 
         public void Initialise_Control(
