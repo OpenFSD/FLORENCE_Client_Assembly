@@ -8,12 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenTK" Version="4.9.3" />
-    <PackageReference Include="StbImageSharp" Version="2.30.15" />
+    <Compile Remove="write_enable\**" />
+    <EmbeddedResource Remove="write_enable\**" />
+    <None Remove="write_enable\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="write_enable\" />
+    <PackageReference Include="OpenTK" Version="4.9.3" />
+    <PackageReference Include="StbImageSharp" Version="2.30.15" />
   </ItemGroup>
 
 </Project>

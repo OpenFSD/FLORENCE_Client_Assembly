@@ -14,8 +14,7 @@ namespace Client_Assembly
         //byffers
         static private Client_Assembly.Inputs.Input_Instance input_Instnace;
         static private Client_Assembly.Outputs.Output_Instance output_Instnace;
-        //stacks        
-        static private List<Client_Assembly.Inputs.Input> stack_Client_InputActions;
+        //stack        
         static private List<Client_Assembly.Outputs.Output> stack_Client_OutputRecieves;
         //praises
         static private Client_Assembly.Praise_Files.User_I user_IO;
@@ -38,9 +37,6 @@ namespace Client_Assembly
 
             output_Instnace = new Client_Assembly.Outputs.Output_Instance();
             while (output_Instnace == null) { /* Wait while is created */ }
-
-            stack_Client_InputActions = new List<Client_Assembly.Inputs.Input>();
-            while (stack_Client_InputActions == null) { /* Wait while is created */ }
 
             stack_Client_OutputRecieves = new List<Client_Assembly.Outputs.Output>();
             while (stack_Client_OutputRecieves == null) { /* Wait while is created */ }
@@ -100,11 +96,6 @@ namespace Client_Assembly
         public Client_Assembly.game_Instance.Settings GetSettings()
         {
             return settings;
-        }
-
-        public List<Client_Assembly.Inputs.Input> GetStack_InputActions()
-        {
-            return stack_Client_InputActions;
         }
 
         public List<Client_Assembly.Outputs.Output> GetStack_OutputsRecieved()

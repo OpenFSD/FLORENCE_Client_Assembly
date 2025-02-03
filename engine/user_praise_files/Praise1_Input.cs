@@ -8,57 +8,33 @@ namespace Client_Assembly.Praise_Files
 {
     public class Praise1_Input
     {
-        static private float position_X;
-        static private float position_Y;
-        static private float position_Z;
-        static private float period;
+        static private float mouse_X;
+        static private float mouse_Y;
 
         public Praise1_Input()
         {
-            position_X = 0;
-            position_Y = 0;
-            position_Z = 0;
-            period = 0;
+            mouse_X = 0;
+            mouse_Y = 0;
         }
 
-        public float Get_Position_X() 
+        public float Get_Mouse_X() 
         {   
-            return position_X; 
+            return mouse_X; 
         }
 
-        public float Get_Position_Y()
+        public float Get_Mouse_Y()
         {
-            return position_Y;
+            return mouse_Y;
         }
 
-        public float Get_Position_Z()
+        public void Set_Mouse_X(float value) 
         {
-            return position_Z;
-        }
-
-        public float GetPeriod()
-        {
-            return period;
+            mouse_X = value;
         }
         
-        public void Set_Position_X(float value) 
+        public void Set_Mouse_Y(float value)
         {
-            position_X = value;
-        }
-        
-        public void Set_Position_Y(float value)
-        {
-            position_Y = value;
-        }
-
-        public void Set_Position_Z(float value)
-        {
-            position_Z = value;
-        }
-
-        public void Set_Period(float value)
-        {
-            period = value;
+            mouse_Y = value;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿
+﻿using OpenTK.Mathematics;
+
 namespace Client_Assembly.Inputs
 {
     public class Input_Control
@@ -9,7 +10,6 @@ namespace Client_Assembly.Inputs
         {
 
         }
-
         public void LoadValuesInToInputSubset(
             ushort praiseEventId,
             float period
@@ -20,19 +20,18 @@ namespace Client_Assembly.Inputs
             switch (praiseEventId)
             {
                 case 0:
-                    
+
                     break;
 
                 case 1:
-                    Client_Assembly.game_Instance.Player data_Player_praise1 = (Client_Assembly.game_Instance.Player)Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0);
-                    Client_Assembly.Praise_Files.Praise1_Input desternation_Subset = (Client_Assembly.Praise_Files.Praise1_Input)newSLot_Stack_InputAction.Get_InputBufferSubset();
-                    desternation_Subset.Set_Position_X(data_Player_praise1.GetPlayerPosition().X);
-                    desternation_Subset.Set_Position_Y(data_Player_praise1.GetPlayerPosition().X);
-                    desternation_Subset.Set_Position_Z(data_Player_praise1.GetPlayerPosition().X);
-                    desternation_Subset.Set_Period(period);
+                    Client_Assembly.Praise_Files.Praise1_Input desternation_Subset = (Client_Assembly.Praise_Files.Praise1_Input)Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().Get_InputBufferSubset();
+                    Vector2 mouse = Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).GetMousePos();
+                    desternation_Subset.Set_Mouse_X(mouse.X);
+                    desternation_Subset.Set_Mouse_Y(mouse.Y);
                     break;
             }
         }
+
         public void SelectSetIntputSubset(
             int praiseEventId
         )
@@ -40,13 +39,16 @@ namespace Client_Assembly.Inputs
             switch (praiseEventId)
             {
                 case 0:
-                    Client_Assembly.Praise_Files.Praise0_Input obj_praise0 = (Client_Assembly.Praise_Files.Praise0_Input)Framework.GetClient().GetData().GetUserIO().GetPraise0_Input();
-                    Framework.GetClient().GetData().GetInput_Instnace().GetBuffer_Front_InputDouble().Set_InputBuffer_SubSet(obj_praise0);
                     break;
 
-		        case 1:
-                    Client_Assembly.Praise_Files.Praise1_Input obj_praise1 = (Client_Assembly.Praise_Files.Praise1_Input)Framework.GetClient().GetData().GetUserIO().GetPraise1_Input();
-                    Framework.GetClient().GetData().GetInput_Instnace().GetBuffer_Front_InputDouble().Set_InputBuffer_SubSet(obj_praise1);
+                case 1:
+                    Client_Assembly.Praise_Files.Praise1_Input obj_praise1 = (Client_Assembly.Praise_Files.Praise1_Input)Framework.GetClient().GetData().GetUserIO().GetPraise0_Input();
+                    Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().Set_InputBuffer_SubSet(obj_praise1);
+                    break;
+
+		        case 2:
+                    Client_Assembly.Praise_Files.Praise2_Input obj_praise2 = (Client_Assembly.Praise_Files.Praise2_Input)Framework.GetClient().GetData().GetUserIO().GetPraise1_Input();
+                    Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().Set_InputBuffer_SubSet(obj_praise2);
                     break;
             }
 		}

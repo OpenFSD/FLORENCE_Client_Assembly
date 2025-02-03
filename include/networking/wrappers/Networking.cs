@@ -77,7 +77,7 @@ namespace Client_Assembly
 
             Address address = new Address();
 
-            //address.SetAddress("::1", port);
+            //address.SetAddress("::1", port);//TODO
 
             connection = client.Connect(ref address);
 
@@ -133,15 +133,19 @@ namespace Client_Assembly
             switch (switch_praiseEventId)
             {
                 case 0:
-                    Client_Assembly.Praise_Files.Praise0_Input subSet = (Client_Assembly.Praise_Files.Praise0_Input)Client_Assembly.Framework.GetClient().GetData().GetInput_Instnace().GetBuffer_Front_InputDouble().Get_InputBufferSubset();
+                    //Client_Assembly.Praise_Files.Praise0_Input subSet_praise0 = (Client_Assembly.Praise_Files.Praise0_Input)Client_Assembly.Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().Get_InputBufferSubset();
+                    break;
+
+                case 1:
+                    Client_Assembly.Praise_Files.Praise1_Input subSet_praise1 = (Client_Assembly.Praise_Files.Praise1_Input)Client_Assembly.Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().Get_InputBufferSubset();
                     for (ushort index = 16; index < 32; index++)
                     {
-                        intBytes = BitConverter.GetBytes(subSet.Get_Mouse_X());
+                        intBytes = BitConverter.GetBytes(subSet_praise1.Get_Mouse_X());
                         data[index] = intBytes[index];
                     }
                     for (ushort index = 32; index < 48; index++)
                     {
-                        intBytes = BitConverter.GetBytes(subSet.Get_Mouse_Y());
+                        intBytes = BitConverter.GetBytes(subSet_praise1.Get_Mouse_Y());
                         data[index] = intBytes[index];
                     }
                     for (ushort index = 48; index < 64; index++)
@@ -150,15 +154,14 @@ namespace Client_Assembly
                     }
                     break;
 
-                case 1:
-                    Client_Assembly.Praise_Files.Praise1_Input subSet_praise1 = (Client_Assembly.Praise_Files.Praise1_Input)Client_Assembly.Framework.GetClient().GetData().GetInput_Instnace().GetBuffer_Front_InputDouble().Get_InputBufferSubset();
-                    
+                case 2:
+                    //Client_Assembly.Praise_Files.Praise2_Input subSet_praise2 = (Client_Assembly.Praise_Files.Praise2_Input)Client_Assembly.Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().Get_InputBufferSubset();
                     break;
 
                 default:
                     break;
             }
-            sockets.SendMessageToConnection(connection, data);
+            //Sockets.SendMessageToConnection(connection, data)//TODO
         }
 
         public static void CopyPayloadFromMessage()

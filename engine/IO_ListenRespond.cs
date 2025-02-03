@@ -28,23 +28,14 @@ namespace Client_Assembly
             {
                 // wait untill ALL threads initalised in preperation of system init.
             }
-            while (false)
+            while (Framework.GetClient().GetExecute().GetExecute_Control().GetFlag_SystemInitialised((short)Framework.GetClient().GetGlobal().Get_NumCores()) == false)
             {
                 switch (Framework.GetClient().GetAlgorithms().GetIO_ListenRespond().GetIO_Control().GetFlag_IO_ThreadState())
                 {
                     case true:
-                        Florence.WriteEnable.Stack_InputAction.Write_Start(1);
-                        while(Framework.GetClient().GetData().GetData_Control().GetFlag_IsLoaded_Stack_InputAction())
-                        {
-                            Framework.GetClient().GetData().GetData_Control().Pop_Stack_InputActions(
-                                Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer(),
-                                Framework.GetClient().GetData().GetStack_InputActions()
-                            );
-                            Networking.CreateAndSendNewMessage(
+                        Client_Assembly.Networking.CreateAndSendNewMessage(
                                 (UInt16)Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetPraiseEventId()
-                            );
-                        }
-                        Florence.WriteEnable.Stack_InputAction.Write_End(1);                            
+                        );
                         break;
                         
                     case false:

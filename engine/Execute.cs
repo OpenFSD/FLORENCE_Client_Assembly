@@ -13,11 +13,14 @@ namespace Client_Assembly
         static private Thread[] concurrent = null;
         static private Thread listenRespond = null;
         static private Thread[] threads = null;
-
+        
         public Execute(int numberOfCores) 
         {
             execute_Control = null;
-            concurrent = new Thread[numberOfCores];//NUMBER OF CORES
+            threads = new Thread[numberOfCores];//NUMBER OF CORES
+            concurrent = new Thread[numberOfCores-2];//NUMBER OF CORES
+            Florence.WriteEnable.Stack_Client_OutputRecieve.Create_WriteEnable();
+            Florence.Concurrency.ConcurrentQue_Client.Create_ConcurrentQue();
         }
 
         public void Initialise_Control(
@@ -32,6 +35,7 @@ namespace Client_Assembly
         public void Initialise()
         {
             Framework.GetClient().GetAlgorithms().Initialise(Framework.GetClient().GetGlobal().Get_NumCores());
+
         }
 
         public void Initialise_Threads(

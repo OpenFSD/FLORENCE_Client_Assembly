@@ -1,4 +1,5 @@
-﻿using Florence.WriteEnable;
+﻿using Client_Assembly.Praise_Files;
+using Florence.WriteEnable;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
@@ -205,38 +206,28 @@ namespace Client_Assembly.game_Instance.gFX
             {
                 this.Close();
             }
-            if (KeyboardState.IsKeyDown(Keys.W)
-                || KeyboardState.IsKeyDown(Keys.S)
-                || KeyboardState.IsKeyDown(Keys.A)
-                || KeyboardState.IsKeyDown(Keys.D)
+
+            Client_Assembly.game_Instance.Player in_Subset_praise1 = (Client_Assembly.game_Instance.Player)Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0);
+            if ((in_Subset_praise1.GetMousePos().X != mouse.X) 
+                || (in_Subset_praise1.GetMousePos().Y != mouse.Y)
             )
             {
-                Framework.GetClient().GetData().GetInput_Instnace().GetInputInstance_Control().SetIsSelected_PraiseEventId(1, true);
+                Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().SetPraiseEventId(1);
+                Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetInputControl().SelectSetIntputSubset(1);
+                Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetInputControl().LoadValuesInToInputSubset(1, period);
+                Client_Assembly.Networking.CreateAndSendNewMessage(1);
             }
 
-            if (Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Get_isFirstMove()) // This bool variable is initially set to true.
+            if ((KeyboardState.IsKeyDown(Keys.W))
+                || (KeyboardState.IsKeyDown(Keys.S))
+                || (KeyboardState.IsKeyDown(Keys.A))
+                || (KeyboardState.IsKeyDown(Keys.D))
+            )
             {
-                Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0).Set_isFirstMove(false);
-            }
-            else
-            {
-                Florence.WriteEnable.Stack_InputAction.Write_Start(0);
-                for (ushort praiseEventId = 0; praiseEventId < 2; praiseEventId++)
-                {
-                    if (Framework.GetClient().GetData().GetInput_Instnace().GetInputInstance_Control().Get_IsSelected_PraiseEventId(praiseEventId) == true)
-                    {
-                        Framework.GetClient().GetData().GetInput_Instnace().GetBuffer_Front_InputDouble().GetInputControl().SelectSetIntputSubset(praiseEventId);
-                        Framework.GetClient().GetData().GetInput_Instnace().GetBuffer_Front_InputDouble().GetInputControl().LoadValuesInToInputSubset(praiseEventId, period);
-                        Framework.GetClient().GetData().Flip_InBufferToWrite();
-                        Framework.GetClient().GetData().GetData_Control().Push_Stack_InputActions(
-                            Framework.GetClient().GetData().GetStack_InputActions(),
-                            Framework.GetClient().GetData().GetInput_Instnace().GetBuffer_Back_InputDouble()
-                        );
-                        Framework.GetClient().GetData().GetInput_Instnace().GetInputInstance_Control().SetIsSelected_PraiseEventId(praiseEventId, false);
-                        Framework.GetClient().GetData().GetData_Control().SetFlag_InputStackLoaded(true);
-                    }
-                }
-                Florence.WriteEnable.Stack_InputAction.Write_End(0);
+                Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().SetPraiseEventId(2);
+                Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetInputControl().SelectSetIntputSubset(2);
+                Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetInputControl().LoadValuesInToInputSubset(2, period);
+                Client_Assembly.Networking.CreateAndSendNewMessage(2);
             }
         }
 
@@ -253,6 +244,11 @@ if (periodOfRefresh == 2000) periodOfRefresh = 0;
 return (float)Math.Sin(periodOfRefresh) / (2.0f + 0.5f);
 }
 */
+        public MouseState Get_MouseState()
+        {
+            return mouse;
+        }
+
         public Vector2 GetNewMousePosition()
         {
             return new Vector2(mouse.Position.X, mouse.Position.Y);
