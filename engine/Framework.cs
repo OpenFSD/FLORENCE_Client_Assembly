@@ -18,11 +18,12 @@ namespace Client_Assembly
             client = new Client_Assembly.Client();
             while (client == null){ /* Wait whileis created */ }
             client.GetExecute().Initialise();
-            client.GetExecute().Initialise_Threads(Framework.GetClient().GetGlobal().Get_NumCores());
 
             //Valve.Sockets.Library.Initialize();
             // networkingClient = new Client_Assembly.Frame.Networking();
             //while (networkingClient == null) { /* wait untill created */ }
+
+            client.GetExecute().Initialise_Threads(Framework.GetClient().GetGlobal().Get_NumCores());
 
             System.Console.WriteLine("Client_Assembly: Framework");//TEST
         }

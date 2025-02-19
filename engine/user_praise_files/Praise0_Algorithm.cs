@@ -17,8 +17,7 @@ namespace Client_Assembly.Praise_Files
             Client_Assembly.Praise_Files.Praise0_Output out_SubSet
         )
         {
-
-
+            out_SubSet.SetFlag_IsPingActive(in_SubSet.GetFlag_IsPingActive());
         }
     }
 }

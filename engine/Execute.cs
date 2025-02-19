@@ -11,16 +11,17 @@ namespace Client_Assembly
     {
         static private Client_Assembly.Execute_Control execute_Control;
         static private Thread[] concurrent = null;
-        static private Thread listenRespond = null;
+        static private Thread liaten_OutputRecieve = null;
+        static private Thread send_InputAction = null;
         static private Thread[] threads = null;
         
         public Execute(int numberOfCores) 
         {
             execute_Control = null;
-            threads = new Thread[numberOfCores];//NUMBER OF CORES
-            concurrent = new Thread[numberOfCores-2];//NUMBER OF CORES
-            //Florence.WriteEnable.Stack_Client_OutputRecieve.Create_WriteEnable();
-            //Florence.Concurrency.ConcurrentQue_Client.Create_ConcurrentQue();
+            threads = new Thread[4];//NUMBER OF CORES
+            concurrent = new Thread[2];//NUMBER OF CORES
+            //Florence.WriteEnable.Stack_Client_OutputRecieve.Create_WriteEnable();//todo
+            //Florence.Concurrency.ConcurrentQue_Client.Create_ConcurrentQue();//todo
         }
 
         public void Initialise_Control(
@@ -42,12 +43,18 @@ namespace Client_Assembly
             int numberOfCores
         )
         {
-            threads = new Thread[numberOfCores];
-            threads[0] = System.Threading.Thread.CurrentThread;
-            Framework.GetClient().GetExecute().GetExecute_Control().SetConditionCodeOfThisThreadedCore(0);
+            threads[0] = new Thread(Framework.GetClient().GetAlgorithms().GetIO_ListenRespond().Thread_Input_Listen);
+            threads[0].Start();
 
-            threads[1] = new Thread(Framework.GetClient().GetAlgorithms().GetIO_ListenRespond().Thread_io_ListenRespond);
+            threads[1] = new Thread(Framework.GetClient().GetAlgorithms().GetIO_ListenRespond().Thread_Output_Respond);
             threads[1].Start();
+
+            for (byte i = 0; i < (Client_Assembly.Framework.GetClient().GetGlobal().Get_NumCores() - 2); i++)
+            {
+                Framework.GetClient().GetAlgorithms().GetConcurrent(i).Set_ConcurrentCoreId(i);
+                threads[i] = new Thread(Framework.GetClient().GetAlgorithms().GetConcurrent(i).Thread_Concurrent);
+                threads[i].Start();
+            }
         }
 
         public void Create_And_Run_Graphics()

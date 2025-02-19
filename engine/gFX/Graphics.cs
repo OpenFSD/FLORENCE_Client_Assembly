@@ -206,28 +206,45 @@ namespace Client_Assembly.game_Instance.gFX
             {
                 this.Close();
             }
-
-            Client_Assembly.game_Instance.Player in_Subset_praise1 = (Client_Assembly.game_Instance.Player)Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0);
-            if ((in_Subset_praise1.GetMousePos().X != mouse.X) 
-                || (in_Subset_praise1.GetMousePos().Y != mouse.Y)
-            )
+            if (Framework.GetClient().GetData().GetData_Control().GetFlag_IsPraiseEvent(0) == false)
             {
-                //Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().SetPraiseEventId(1);
-                //Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetInputControl().SelectSetIntputSubset(1);
-                //Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetInputControl().LoadValuesInToInputSubset(1, period);
-                //Client_Assembly.Networking.CreateAndSendNewMessage(1);
+                if (KeyboardState.IsKeyDown(Keys.Enter))//ping
+                {
+                    Framework.GetClient().GetData().GetData_Control().SetIsPraiseEvent(0, true);
+                   // Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().SetPraiseEventId(0);
+                   // Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetInputControl().SelectSetIntputSubset(0);
+                   // Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetInputControl().LoadValuesInToInputSubset(0, period);
+                    //Client_Assembly.Networking.CreateAndSendNewMessage(0);//todo
+                }
             }
-
-            if ((KeyboardState.IsKeyDown(Keys.W))
-                || (KeyboardState.IsKeyDown(Keys.S))
-                || (KeyboardState.IsKeyDown(Keys.A))
-                || (KeyboardState.IsKeyDown(Keys.D))
-            )
+            if (Framework.GetClient().GetData().GetData_Control().GetFlag_IsPraiseEvent(1) == false)
             {
-                //Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().SetPraiseEventId(2);
-                //Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetInputControl().SelectSetIntputSubset(2);
-                //Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetInputControl().LoadValuesInToInputSubset(2, period);
-                //Client_Assembly.Networking.CreateAndSendNewMessage(2);
+                Client_Assembly.game_Instance.Player in_Subset_praise1 = (Client_Assembly.game_Instance.Player)Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0);
+                if ((in_Subset_praise1.GetMousePos().X != mouse.X) 
+                    || (in_Subset_praise1.GetMousePos().Y != mouse.Y)
+                )//mouse move
+                {
+                    Framework.GetClient().GetData().GetData_Control().SetIsPraiseEvent(1, true);
+                   // Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().SetPraiseEventId(1);
+                    //Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetInputControl().SelectSetIntputSubset(1);
+                    //Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetInputControl().LoadValuesInToInputSubset(1, period);
+                    //Client_Assembly.Networking.CreateAndSendNewMessage(1);//todo
+                }
+            }
+            if (Framework.GetClient().GetData().GetData_Control().GetFlag_IsPraiseEvent(2) == false)
+            {
+                if ((KeyboardState.IsKeyDown(Keys.W))
+                    || (KeyboardState.IsKeyDown(Keys.S))
+                    || (KeyboardState.IsKeyDown(Keys.A))
+                    || (KeyboardState.IsKeyDown(Keys.D))
+                )//player move
+                {
+                    Framework.GetClient().GetData().GetData_Control().SetIsPraiseEvent(2, true);
+                    //Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().SetPraiseEventId(2);
+                    //Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetInputControl().SelectSetIntputSubset(2);
+                    //Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetInputControl().LoadValuesInToInputSubset(2, period);
+                    //Client_Assembly.Networking.CreateAndSendNewMessage(2);//todo
+                }
             }
         }
 

@@ -12,10 +12,17 @@ namespace Client_Assembly
     {
         static private bool flag_IsLoaded_Stack_InputAction;
         static private bool flag_IsLoaded_Stack_OutputAction;
-        
-        public Data_Control() 
-        { 
-        
+        static private bool[] isPraiseActive;
+
+        public Data_Control()
+        {
+            flag_IsLoaded_Stack_InputAction = false;
+            flag_IsLoaded_Stack_OutputAction = false;
+            isPraiseActive = new bool[3];//Number Of Praises
+            for (int index = 0; index < 3; index++)//Number Of Praises
+            {
+                isPraiseActive[index] = false;
+            }
         }
 
         public void Push_Stack_InputActions(
@@ -62,13 +69,25 @@ namespace Client_Assembly
             return flag_IsLoaded_Stack_OutputAction;
         }
 
+        public bool GetFlag_IsPraiseEvent(int praiseEventId)
+        {
+            return isPraiseActive[praiseEventId];
+        }
+        
         public void SetFlag_InputStackLoaded(bool value)
         {
             flag_IsLoaded_Stack_InputAction = value;
         }
+
         public void SetFlag_OutputStackLoaded(bool value)
         {
             flag_IsLoaded_Stack_OutputAction = value;
         }
+
+        public void SetIsPraiseEvent(int praiseEventId, bool value)
+        {
+            isPraiseActive[praiseEventId] = value; 
+        }
+
     }
 }

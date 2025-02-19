@@ -17,17 +17,17 @@ namespace Client_Assembly
             flag_SystemInitialised = true;
 
             flag_ThreadInitialised = new bool[numberOfCores];
-            for(UInt16 index = 0; index < numberOfCores; index++)
+            for(byte index = 0; index < numberOfCores; index++)
             {
                 flag_ThreadInitialised[index] = new bool();
                 flag_ThreadInitialised[index] = true;
             }
         }
 
-        public bool GetFlag_SystemInitialised(Int16 numberOfCores)
+        public bool GetFlag_Client_App_Initialised()
         {
             flag_SystemInitialised = false;
-            for (int index = 0; index < numberOfCores; index++)
+            for (byte index = 0; index < Client_Assembly.Framework.GetClient().GetGlobal().Get_NumCores(); index++)
             {
                 if (flag_ThreadInitialised[index] == true)
                 {
@@ -37,18 +37,18 @@ namespace Client_Assembly
             return flag_SystemInitialised;
         }
 
-        public bool GetFlag_ThreadInitialised(Int16 coreId)
+        public bool GetFlag_ThreadInitialised(byte coreId)
         {
             return flag_ThreadInitialised[coreId];
         }
 
-        public void SetConditionCodeOfThisThreadedCore(Int16 coreId)
+        public void SetConditionCodeOfThisThreadedCore(byte coreId)
         {
             //Todo
             SetFlag_ThreadInitialised(coreId, false);
         }
 
-        public void SetFlag_ThreadInitialised(Int16 coreId, bool value)
+        public void SetFlag_ThreadInitialised(byte coreId, bool value)
         {
             flag_ThreadInitialised[coreId] = false;
         }

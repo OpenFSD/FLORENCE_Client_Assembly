@@ -8,33 +8,21 @@ namespace Client_Assembly.Praise_Files
 {
     public class Praise0_Input
     {
-        static private Int16 mouse_X;
-        static private Int16 mouse_Y;
+        static private bool ping_Active;
 
         public Praise0_Input()
         {
-            mouse_X = 0;
-            mouse_Y = 0;
+            ping_Active = false;
         }
 
-        public Int16 Get_Mouse_X() 
+        public bool GetFlag_IsPingActive() 
         {   
-            return mouse_X; 
+            return ping_Active; 
         }
 
-        public Int16 Get_Mouse_Y()
+        public void SetFlag_IsPingActive(bool value)
         {
-            return mouse_Y;
-        }
-
-        public void Set_Mouse_X(Int16 value) 
-        {
-            mouse_X = value;
-        }
-        
-        public void Set_Mouse_Y(Int16 value)
-        {
-            mouse_Y = value;
+            ping_Active = value;
         }
     }
 }

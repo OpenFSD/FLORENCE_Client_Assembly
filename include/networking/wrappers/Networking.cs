@@ -77,7 +77,7 @@ namespace Client_Assembly
 
             Address address = new Address();
 
-            //address.SetAddress("::1", port);//TODO
+            address.SetAddress("::1", 0/* port */);//TODO
 
             connection = client.Connect(ref address);
 
@@ -125,7 +125,7 @@ namespace Client_Assembly
 
             byte[] intBytes = null;
             intBytes = BitConverter.GetBytes(switch_praiseEventId);
-            for (ushort index = 0; index < intBytes.Length; index++)
+            for (ushort index = 0; index < 16; index++)
             {
                 data[index] = intBytes[index];
             }
@@ -133,7 +133,16 @@ namespace Client_Assembly
             switch (switch_praiseEventId)
             {
                 case 0:
-                    //Client_Assembly.Praise_Files.Praise0_Input subSet_praise0 = (Client_Assembly.Praise_Files.Praise0_Input)Client_Assembly.Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().Get_InputBufferSubset();
+                    Client_Assembly.Praise_Files.Praise0_Input subSet_praise0 = (Client_Assembly.Praise_Files.Praise0_Input)Client_Assembly.Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().Get_InputBufferSubset();
+                    intBytes = BitConverter.GetBytes(subSet_praise0.GetFlag_IsPingActive());
+                    for (ushort index = 16; index < 18; index++)
+                    {
+                        data[index] = intBytes[index];
+                    }
+                    for (ushort index = 18; index < 64; index++)
+                    {
+                        data[index] = new byte();
+                    }
                     break;
 
                 case 1:
@@ -161,7 +170,7 @@ namespace Client_Assembly
                 default:
                     break;
             }
-            //Sockets.SendMessageToConnection(connection, data)//TODO
+            //Client_Assembly.Networking.sockets.SendMessageToConnection(0, data);//todo
         }
 
         public static void CopyPayloadFromMessage()
@@ -171,27 +180,25 @@ namespace Client_Assembly
 
             int switch_praiseEventId = 0;
             bool[] temp_bool_array;
-
+            temp_bool_array = new bool[16];
             for (Int16 i = 0; i < 16; i++)
             {
-                temp_bool_array = new bool[16];
                 temp_bool_array[i] = Convert.ToBoolean(buffer[i]);
-                switch_praiseEventId = Networking.BitArrayToInt(temp_bool_array, 16); ;
             }
+            switch_praiseEventId = Networking.BitArrayToInt(temp_bool_array, 16);
             switch (switch_praiseEventId)
             {
                 case 0:
-                    for (Int16 i = 16; i < 16; i++)
-                    {
-                        temp_bool_array = new bool[16];
-                        temp_bool_array[i] = Convert.ToBoolean(buffer[i]);
-                        //FLORENCE.Framework.GetServer()->GetData()->GetInputBuffer(FLORENCE.Framework.GetServer()->GetData()->GetStateOfInBufferWrite())->
-                    }
-                    //data = new byte[64];
+
                     break;
 
                 case 1:
-                    //ToDo
+                    temp_bool_array = new bool[16];
+                    for (Int16 i = 16; i < 32; i++)
+                    {
+                        temp_bool_array[i] = Convert.ToBoolean(buffer[i]);
+                    }
+                    //data = new byte[64];
                     break;
 
                 default:
