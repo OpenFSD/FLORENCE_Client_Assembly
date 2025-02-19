@@ -43,8 +43,7 @@ namespace Client_Assembly
             int numberOfCores
         )
         {
-            threads[0] = new Thread(Framework.GetClient().GetAlgorithms().GetIO_ListenRespond().Thread_Input_Listen);
-            threads[0].Start();
+            threads[0] = Thread.CurrentThread;
 
             threads[1] = new Thread(Framework.GetClient().GetAlgorithms().GetIO_ListenRespond().Thread_Output_Respond);
             threads[1].Start();

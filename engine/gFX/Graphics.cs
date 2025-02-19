@@ -25,6 +25,8 @@ namespace Client_Assembly.game_Instance.gFX
         private Client_Assembly.game_Instance.gFX.Texture texture0;
         private Client_Assembly.game_Instance.gFX.Texture texture1;
 
+        bool done_once;
+
         // Get the mouse state
         MouseState mouse = null;
 
@@ -40,6 +42,7 @@ namespace Client_Assembly.game_Instance.gFX
         )
         {
             mouse = MouseState;
+            done_once = true;
             System.Console.WriteLine("Client_Assembly: Graphics & GameWindow");
         }
 
@@ -195,6 +198,14 @@ namespace Client_Assembly.game_Instance.gFX
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
             base.OnUpdateFrame(e);
+            if (done_once == true)
+            {
+                Client_Assembly.Framework.GetClient().GetExecute().GetExecute_Control().SetFlag_ThreadInitialised(0, false);
+                System.Console.WriteLine("Thread Initalised => Thread_OnUpdateFrame()");//TestBench
+                done_once = false;
+                System.Console.WriteLine("Thread Starting => Thread_OnUpdateFrame()");//TestBench
+            }
+
             float period = (float)e.Time;
             Framework.GetClient().GetData().GetInput_Instnace().SetBuffer_Input(Client_Assembly.Framework.GetClient().GetData().GetInput_Instnace().GetEmptyInput());
 
@@ -211,21 +222,21 @@ namespace Client_Assembly.game_Instance.gFX
                 if (KeyboardState.IsKeyDown(Keys.Enter))//ping
                 {
                     Framework.GetClient().GetData().GetData_Control().SetIsPraiseEvent(0, true);
-                   // Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().SetPraiseEventId(0);
-                   // Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetInputControl().SelectSetIntputSubset(0);
-                   // Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetInputControl().LoadValuesInToInputSubset(0, period);
+                    // Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().SetPraiseEventId(0);
+                    // Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetInputControl().SelectSetIntputSubset(0);
+                    // Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetInputControl().LoadValuesInToInputSubset(0, period);
                     //Client_Assembly.Networking.CreateAndSendNewMessage(0);//todo
                 }
             }
             if (Framework.GetClient().GetData().GetData_Control().GetFlag_IsPraiseEvent(1) == false)
             {
                 Client_Assembly.game_Instance.Player in_Subset_praise1 = (Client_Assembly.game_Instance.Player)Framework.GetClient().GetData().GetGame_Instance().GetPlayer(0);
-                if ((in_Subset_praise1.GetMousePos().X != mouse.X) 
+                if ((in_Subset_praise1.GetMousePos().X != mouse.X)
                     || (in_Subset_praise1.GetMousePos().Y != mouse.Y)
                 )//mouse move
                 {
                     Framework.GetClient().GetData().GetData_Control().SetIsPraiseEvent(1, true);
-                   // Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().SetPraiseEventId(1);
+                    // Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().SetPraiseEventId(1);
                     //Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetInputControl().SelectSetIntputSubset(1);
                     //Framework.GetClient().GetData().GetInput_Instnace().Get_Transmit_InputBuffer().GetInputControl().LoadValuesInToInputSubset(1, period);
                     //Client_Assembly.Networking.CreateAndSendNewMessage(1);//todo
@@ -247,7 +258,7 @@ namespace Client_Assembly.game_Instance.gFX
                 }
             }
         }
-
+    
         protected override void OnMouseWheel(MouseWheelEventArgs e)
         {
             base.OnMouseWheel(e);
